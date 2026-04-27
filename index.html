@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Финансовый план — Виктория и Роман</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f5f1e8;
+    --bg-card: #fdfbf5;
+    --bg-card-done: #e8efe4;
+    --ink: #1a1814;
+    --ink-soft: #5a544a;
+    --ink-faded: #8a8275;
+    --line: #d8d0bf;
+    --line-soft: #ebe5d4;
+    --accent: #8b2818;
+    --accent-soft: #c4654f;
+    --green: #3d6b3a;
+    --green-soft: #6a9967;
+    --gold: #b08a3e;
+    --yellow-bg: #fdf6df;
+    --yellow-line: #d9c178;
+    --orange-bg: #fbe9d4;
+    --orange-line: #d49758;
+    --red-bg: #f6dcd6;
+    --red-line: #c97766;
+    --shadow: 0 1px 0 rgba(26, 24, 20, 0.04), 0 8px 24px rgba(26, 24, 20, 0.04);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Manrope', sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    background-image:
+      radial-gradient(circle at 12% 8%, rgba(176, 138, 62, 0.06), transparent 40%),
+      radial-gradient(circle at 90% 90%, rgba(139, 40, 24, 0.04), transparent 50%);
+    padding: 24px 16px 100px;
+  }
+  .wrap { max-width: 920px; margin: 0 auto; }
+
+  header { margin-bottom: 20px; }
+  .eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: clamp(26px, 6vw, 42px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  h1 em { font-style: italic; font-weight: 300; color: var(--accent); }
+  .lead {
+    color: var(--ink-soft);
+    max-width: 600px;
+    font-size: 13px;
+  }
+  .sync-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 8px;
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    padding: 5px 11px;
+    border-radius: 100px;
+    font-size: 11px;
+    color: var(--ink-soft);
+  }
+  .sync-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 0 0 0 rgba(61, 107, 58, 0.5); }
+    70% { box-shadow: 0 0 0 8px rgba(61, 107, 58, 0); }
+  }
+
+  .balance-card {
+    background: linear-gradient(135deg, #1a1814, #2d2820);
+    color: #fdfbf5;
+    border-radius: 22px;
+    padding: 26px 28px;
+    margin-bottom: 16px;
+    box-shadow: 0 12px 32px rgba(26, 24, 20, 0.18);
+    position: relative;
+    overflow: hidden;
+  }
+  .balance-card::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 180px; height: 180px;
+    background: radial-gradient(circle, rgba(176, 138, 62, 0.15), transparent 70%);
+    pointer-events: none;
+  }
+  .balance-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(253, 251, 245, 0.6);
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .balance-value {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(38px, 9vw, 58px);
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    margin-bottom: 4px;
+  }
+  .balance-value .currency {
+    font-size: 20px;
+    color: rgba(253, 251, 245, 0.5);
+    font-style: italic;
+    margin-left: 6px;
+  }
+  .balance-value.negative { color: #f4a89c; }
+  .balance-meta {
+    font-size: 11px;
+    color: rgba(253, 251, 245, 0.5);
+    margin-bottom: 18px;
+    font-style: italic;
+  }
+  .pockets {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    border-top: 1px solid rgba(253, 251, 245, 0.1);
+    padding-top: 16px;
+  }
+  .pocket-label {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(253, 251, 245, 0.5);
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+  .pocket-value {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 500;
+  }
+  .pocket-value.neg { color: #f4a89c; }
+
+  .alert {
+    border-radius: 14px;
+    padding: 12px 16px;
+    margin-bottom: 14px;
+    font-size: 13px;
+    line-height: 1.5;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .alert-icon { font-size: 18px; flex-shrink: 0; }
+  .alert-yellow { background: var(--yellow-bg); border: 1px solid var(--yellow-line); }
+  .alert-orange { background: var(--orange-bg); border: 1px solid var(--orange-line); }
+  .alert-red { background: var(--red-bg); border: 1px solid var(--red-line); }
+  .alert-title { font-weight: 600; margin-bottom: 2px; }
+
+  .planfact {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 18px 22px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow);
+  }
+  .planfact-title {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .pf-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .pf-col-label {
+    font-size: 10px;
+    color: var(--ink-faded);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+  .pf-cell {
+    font-family: 'Fraunces', serif;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .pf-cell.green { color: var(--green); }
+  .pf-cell.red { color: var(--accent); }
+  .pf-cell.muted { color: var(--ink-faded); font-size: 13px; }
+  .pf-divider { 
+    grid-column: 1 / -1;
+    height: 1px;
+    background: var(--line-soft);
+    margin: 8px 0;
+  }
+  .pf-cell-label {
+    font-size: 11px;
+    color: var(--ink-soft);
+    align-self: center;
+    font-weight: 500;
+  }
+
+  .progress-card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 18px 22px;
+    margin-bottom: 18px;
+    box-shadow: var(--shadow);
+  }
+  .progress-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+  .stat-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-faded);
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+  .stat-value {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+  .stat-value .currency {
+    font-size: 13px;
+    color: var(--ink-faded);
+    margin-left: 3px;
+    font-style: italic;
+  }
+  .bar-track {
+    height: 6px;
+    background: var(--line-soft);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--gold));
+    border-radius: 100px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .overflow-card {
+    background: var(--bg-card);
+    border: 1.5px solid var(--green-soft);
+    border-radius: 16px;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow);
+  }
+  .overflow-title {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--green);
+    margin-bottom: 4px;
+  }
+  .overflow-amount {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--green);
+    margin-bottom: 10px;
+  }
+  .overflow-text {
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+    line-height: 1.5;
+  }
+  .overflow-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .month-card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: background 0.3s ease, border-color 0.3s ease;
+    box-shadow: var(--shadow);
+  }
+  .month-card.completed {
+    background: var(--bg-card-done);
+    border-color: var(--green-soft);
+  }
+  .month-header {
+    padding: 16px 22px;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+  }
+  .month-title-block { flex: 1; min-width: 0; }
+  .month-num {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--ink-faded);
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .month-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(19px, 4vw, 24px);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+  .month-title em { font-style: italic; color: var(--accent); font-weight: 300; }
+  .completed .month-title em { color: var(--green); }
+  .month-summary {
+    color: var(--ink-soft);
+    font-size: 12px;
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+  .month-progress { text-align: right; flex-shrink: 0; }
+  .month-progress-num {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 500;
+  }
+  .month-progress-label {
+    font-size: 10px;
+    color: var(--ink-faded);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .chevron {
+    display: inline-block;
+    transition: transform 0.3s ease;
+    color: var(--ink-faded);
+    font-size: 18px;
+    margin-left: 4px;
+  }
+  .month-card.open .chevron { transform: rotate(90deg); }
+  .month-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .month-card.open .month-body { max-height: 8000px; }
+  .month-overview {
+    padding: 14px 22px;
+    border-top: 1px solid var(--line-soft);
+    background: rgba(176, 138, 62, 0.03);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
+  }
+  .ov-item .ov-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-faded);
+    margin-bottom: 2px;
+    font-weight: 600;
+  }
+  .ov-item .ov-value {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-weight: 500;
+  }
+  .ov-value.green { color: var(--green); }
+  .ov-value.red { color: var(--accent); }
+  .targets {
+    padding: 12px 22px;
+    border-top: 1px solid var(--line-soft);
+  }
+  .targets-title {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .target-list { display: flex; flex-wrap: wrap; gap: 6px; }
+  .target-chip {
+    font-size: 11px;
+    padding: 4px 10px;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    color: var(--ink-soft);
+  }
+  .target-chip.done {
+    background: var(--green);
+    color: white;
+    border-color: var(--green);
+  }
+  .section-title {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+    font-weight: 600;
+    padding: 14px 22px 4px;
+    border-top: 1px solid var(--line-soft);
+  }
+
+  .action {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 22px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .action:last-child { border-bottom: none; }
+  .action:hover { background: rgba(176, 138, 62, 0.04); }
+  .action.income { background: rgba(61, 107, 58, 0.03); }
+  .action.income:hover { background: rgba(61, 107, 58, 0.07); }
+  .action.priority { background: rgba(139, 40, 24, 0.05); }
+  .action.priority:hover { background: rgba(139, 40, 24, 0.08); }
+  .action.manual { border-left: 3px solid var(--gold); }
+  .checkbox {
+    width: 21px;
+    height: 21px;
+    border: 1.5px solid var(--ink-soft);
+    border-radius: 6px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-card);
+    transition: all 0.2s ease;
+  }
+  .action.checked .checkbox { background: var(--green); border-color: var(--green); }
+  .action.checked.priority .checkbox { background: var(--accent); border-color: var(--accent); }
+  .checkbox svg {
+    width: 13px;
+    height: 13px;
+    stroke: white;
+    stroke-width: 3;
+    fill: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  .action.checked .checkbox svg { opacity: 1; }
+  .action-content { flex: 1; min-width: 0; }
+  .action-row {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: nowrap;
+  }
+  .action-date {
+    font-family: 'Fraunces', serif;
+    font-size: 12px;
+    color: var(--ink-faded);
+    font-style: italic;
+    flex-shrink: 0;
+    min-width: 42px;
+    font-weight: 500;
+  }
+  .action-emoji { font-size: 14px; flex-shrink: 0; }
+  .action-name {
+    color: var(--ink);
+    font-weight: 500;
+    font-size: 13px;
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+  .action.checked .action-name {
+    text-decoration: line-through;
+    text-decoration-thickness: 1px;
+    color: var(--ink-faded);
+  }
+  .action.priority .action-name { color: var(--accent); font-weight: 600; }
+  .action.priority.checked .action-name { color: var(--ink-faded); }
+  .action-amount {
+    font-family: 'Fraunces', serif;
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: auto;
+    flex-shrink: 0;
+    text-align: right;
+  }
+  .action-amount.in { color: var(--green); }
+  .action.priority .action-amount { color: var(--accent); font-weight: 600; }
+  .action.checked .action-amount { color: var(--ink-faded); text-decoration: line-through; }
+  .action-note {
+    font-size: 11px;
+    color: var(--ink-faded);
+    margin-top: 3px;
+    line-height: 1.4;
+    font-style: italic;
+  }
+  .delete-btn {
+    background: none;
+    border: none;
+    color: var(--ink-faded);
+    font-size: 16px;
+    cursor: pointer;
+    padding: 0 4px;
+    margin-left: 6px;
+    flex-shrink: 0;
+    opacity: 0.5;
+    transition: opacity 0.2s, color 0.2s;
+  }
+  .delete-btn:hover { opacity: 1; color: var(--accent); }
+  .badge {
+    display: inline-block;
+    font-size: 9px;
+    padding: 2px 6px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    margin-left: 4px;
+    background: var(--accent);
+    color: white;
+    vertical-align: 1px;
+  }
+  .badge.last { background: var(--green); }
+  .badge.bonus { background: var(--gold); }
+  .badge.manual { background: var(--gold); }
+
+  .controls {
+    display: flex;
+    gap: 8px;
+    margin-top: 22px;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+  .btn {
+    background: transparent;
+    border: 1px solid var(--line);
+    padding: 9px 14px;
+    border-radius: 100px;
+    font-family: inherit;
+    font-size: 12px;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .btn:hover { border-color: var(--ink-soft); color: var(--ink); }
+  .btn.danger:hover { border-color: var(--accent); color: var(--accent); }
+  .btn.primary {
+    background: var(--ink);
+    color: var(--bg-card);
+    border-color: var(--ink);
+  }
+  .btn.primary:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+  .btn.green {
+    background: var(--green);
+    color: white;
+    border-color: var(--green);
+  }
+  .btn.green:hover {
+    background: var(--green-soft);
+    border-color: var(--green-soft);
+  }
+
+  .fab {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    width: 60px;
+    height: 60px;
+    background: var(--ink);
+    color: var(--bg-card);
+    border: none;
+    border-radius: 50%;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(26, 24, 20, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    z-index: 50;
+  }
+  .fab:hover { background: var(--accent); transform: scale(1.05); }
+  .fab:active { transform: scale(0.95); }
+
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(26, 24, 20, 0.4);
+    backdrop-filter: blur(4px);
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 100;
+    padding: 16px;
+  }
+  .modal-backdrop.show { display: flex; animation: fadeIn 0.2s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+  .modal {
+    background: var(--bg-card);
+    border-radius: 22px;
+    padding: 22px;
+    width: 100%;
+    max-width: 440px;
+    max-height: 86vh;
+    overflow-y: auto;
+    animation: slideUp 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .modal-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+  .modal-title em { font-style: italic; color: var(--accent); font-weight: 300; }
+  .form-group { margin-bottom: 14px; }
+  .form-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faded);
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .form-input,
+  .form-select {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--bg);
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--ink);
+    transition: border 0.2s;
+  }
+  .form-input:focus, .form-select:focus { outline: none; border-color: var(--ink); }
+  .form-input.amount {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 500;
+    text-align: center;
+    padding: 14px;
+  }
+  .type-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    background: var(--bg);
+    border-radius: 10px;
+    padding: 4px;
+    border: 1px solid var(--line);
+  }
+  .type-btn {
+    background: transparent;
+    border: none;
+    padding: 9px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    transition: all 0.2s;
+  }
+  .type-btn.active.income { background: var(--green); color: white; }
+  .type-btn.active.expense { background: var(--accent); color: white; }
+  .modal-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 18px;
+  }
+  .modal-buttons .btn { flex: 1; padding: 11px; font-size: 14px; }
+
+  .legend {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-size: 10px;
+    color: var(--ink-faded);
+    margin-top: 10px;
+  }
+  .legend-item { display: flex; align-items: center; gap: 5px; }
+  .legend-dot { width: 9px; height: 9px; border-radius: 3px; }
+
+  .celebration {
+    background: linear-gradient(135deg, var(--green), var(--green-soft));
+    color: white;
+    padding: 26px 22px;
+    border-radius: 18px;
+    text-align: center;
+    margin-top: 22px;
+    display: none;
+  }
+  .celebration.show { display: block; }
+  .celebration h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 26px;
+    font-weight: 400;
+    margin-bottom: 6px;
+    font-style: italic;
+  }
+
+  .loading-screen {
+    position: fixed;
+    inset: 0;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+    z-index: 200;
+    transition: opacity 0.3s ease;
+  }
+  .loading-screen.hidden { opacity: 0; pointer-events: none; }
+  .loader {
+    width: 32px; height: 32px;
+    border: 3px solid var(--line);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 600px) {
+    body { padding: 16px 10px 100px; }
+    .month-header { padding: 14px 16px; }
+    .action { padding: 10px 16px; gap: 10px; }
+    .section-title { padding: 12px 16px 4px; }
+    .month-overview { padding: 12px 16px; }
+    .targets { padding: 10px 16px; }
+    .progress-card { padding: 16px; }
+    .balance-card { padding: 22px 20px; }
+    .planfact { padding: 16px; }
+    .month-title { font-size: 18px; }
+    .stat-value { font-size: 19px; }
+    .month-progress-num { font-size: 16px; }
+    .action-date { min-width: 40px; font-size: 11px; }
+    .action-name { font-size: 12.5px; }
+    .action-amount { font-size: 13px; }
+    .pf-grid { grid-template-columns: 80px 1fr 1fr; gap: 8px; }
+    .pf-cell { font-size: 13px; }
+    .legend { gap: 8px; }
+    .fab { bottom: 16px; right: 16px; width: 54px; height: 54px; font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="loading-screen" id="loadingScreen">
+  <div class="loader"></div>
+  <div class="loading-text">Загружаем ваши данные…</div>
+</div>
+
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Финансовый план · Виктория & Роман</div>
+  <h1>Путь <em>к свободе</em><br>от долгов</h1>
+  <p class="lead">Май → Август 2026. Живой бюджет с балансом онлайн.</p>
+  <div class="sync-hint">
+    <span class="sync-dot"></span>
+    <span id="syncText">Синхронизация…</span>
+  </div>
+</header>
+
+<div class="balance-card">
+  <div class="balance-label">Баланс на сейчас</div>
+  <div class="balance-value" id="balanceMain">0<span class="currency">₽</span></div>
+  <div class="balance-meta" id="balanceMeta">пока не было операций</div>
+  <div class="pockets">
+    <div>
+      <div class="pocket-label">В обороте</div>
+      <div class="pocket-value" id="pocketFlow">0 ₽</div>
+    </div>
+    <div>
+      <div class="pocket-label">Буфер ЧП</div>
+      <div class="pocket-value" id="pocketBuffer">0 ₽</div>
+    </div>
+    <div>
+      <div class="pocket-label">Фонд</div>
+      <div class="pocket-value" id="pocketCushion">0 ₽</div>
+    </div>
+  </div>
+</div>
+
+<div id="alertBox"></div>
+<div id="overflowBox"></div>
+
+<div class="planfact">
+  <div class="planfact-title">План vs Факт — текущий месяц</div>
+  <div class="pf-grid">
+    <div></div>
+    <div class="pf-col-label">План</div>
+    <div class="pf-col-label">Факт</div>
+    
+    <div class="pf-cell-label">Доходы</div>
+    <div class="pf-cell muted" id="pfPlanIncome">0</div>
+    <div class="pf-cell green" id="pfFactIncome">0</div>
+    
+    <div class="pf-cell-label">Расходы</div>
+    <div class="pf-cell muted" id="pfPlanExpense">0</div>
+    <div class="pf-cell red" id="pfFactExpense">0</div>
+    
+    <div class="pf-divider"></div>
+    
+    <div class="pf-cell-label" style="font-weight:600">Дельта</div>
+    <div></div>
+    <div class="pf-cell" id="pfDelta">—</div>
+  </div>
+</div>
+
+<div class="progress-card">
+  <div class="progress-grid">
+    <div>
+      <div class="stat-label">Долги закрыты</div>
+      <div class="stat-value"><span id="closedCount">0</span><span class="currency">/7</span></div>
+    </div>
+    <div>
+      <div class="stat-label">Шаги плана</div>
+      <div class="stat-value"><span id="actionsCount">0</span><span class="currency">/<span id="actionsTotal">0</span></span></div>
+    </div>
+    <div>
+      <div class="stat-label">Фактов</div>
+      <div class="stat-value"><span id="factsCount">0</span></div>
+    </div>
+  </div>
+  <div class="bar-track"><div class="bar-fill" id="barFill" style="width: 0%"></div></div>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background: var(--green)"></div>Доход</div>
+    <div class="legend-item"><div class="legend-dot" style="background: var(--accent)"></div>Досрочка</div>
+    <div class="legend-item"><div class="legend-dot" style="background: var(--gold)"></div>Ручной ввод</div>
+  </div>
+</div>
+
+<div id="months"></div>
+
+<div class="celebration" id="celebration">
+  <h2>Поздравляем!</h2>
+  <div>Все долги закрыты. Можно копить подушку безопасности.</div>
+</div>
+
+<div class="controls">
+  <button class="btn" id="expandAllBtn">Развернуть всё</button>
+  <button class="btn" id="collapseAllBtn">Свернуть всё</button>
+  <button class="btn danger" id="resetBtn">Сбросить</button>
+</div>
+
+</div>
+
+<button class="fab" id="fabBtn" title="Добавить">+</button>
+
+<div class="modal-backdrop" id="modal">
+  <div class="modal">
+    <div class="modal-title">Добавить <em id="modalType">доход</em></div>
+    
+    <div class="form-group">
+      <label class="form-label">Тип</label>
+      <div class="type-toggle" id="typeToggle">
+        <button class="type-btn income active" data-type="income">💰 Доход</button>
+        <button class="type-btn expense" data-type="expense">💸 Расход</button>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">Сумма, ₽</label>
+      <input type="number" class="form-input amount" id="formAmount" placeholder="0" inputmode="decimal">
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">Дата</label>
+      <input type="date" class="form-input" id="formDate">
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">Кто</label>
+      <select class="form-select" id="formWho">
+        <option value="С1">Супруг 1 (Виктория)</option>
+        <option value="С2">Супруг 2 (Роман)</option>
+        <option value="Общее" selected>Общее</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">Категория</label>
+      <select class="form-select" id="formCategory"></select>
+    </div>
+    
+    <div class="form-group">
+      <label class="form-label">Заметка (необязательно)</label>
+      <input type="text" class="form-input" id="formNote" placeholder="Например: премия за апрель">
+    </div>
+    
+    <div class="modal-buttons">
+      <button class="btn" id="modalCancel">Отмена</button>
+      <button class="btn primary" id="modalSave">Добавить</button>
+    </div>
+  </div>
+</div>
+
+<!-- Firebase SDK -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import { getDatabase, ref, onValue, set, off } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAqXKSLL5oqIYOiffBBRFtaUssgNaei6AY",
+  authDomain: "romanviktoria-2d72b.firebaseapp.com",
+  databaseURL: "https://romanviktoria-2d72b-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "romanviktoria-2d72b",
+  storageBucket: "romanviktoria-2d72b.firebasestorage.app",
+  messagingSenderId: "200835161725",
+  appId: "1:200835161725:web:e863283d7ce40657d3db14"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+// Доступ к функциям из основного скрипта
+window.firebaseDB = {
+  setActions: (data) => set(ref(db, 'tracker/actionStates'), data),
+  setEntries: (data) => set(ref(db, 'tracker/manualEntries'), data),
+  watchActions: (cb) => onValue(ref(db, 'tracker/actionStates'), (snap) => cb(snap.val())),
+  watchEntries: (cb) => onValue(ref(db, 'tracker/manualEntries'), (snap) => cb(snap.val()))
+};
+
+// Сигнализируем основному скрипту что Firebase готов
+window.dispatchEvent(new Event('firebase-ready'));
+</script>
+
+<script>
+const PLAN = [
+  {
+    id: 'may',
+    title: 'Май',
+    year: '2026',
+    accent: 'выравнивание',
+    summary: 'Закрываем хвосты апреля (квартира, мама В, бабушка Р, мама Р). Все минимумы. Остаток — в буфер ЧП и фонд июня.',
+    overview: { 'Доход': '+254 500', 'Жизнь+быт': '−126 206', 'Минимумы долгов': '−64 182', 'В буфер ЧП': '+15 000', 'В фонд июня': '+34 613' },
+    targets: ['Закрыть хвост Мама В 7к', 'Закрыть Бабушку Р 3к', 'Закрыть хвост Мама Р 1.5к', 'Все минимумы вовремя', 'Накопить фонд для июня'],
+    actions: [
+      { id: 'm-1',  date: '30.04', emoji: '💰', name: 'Приход С2',                       amount: +12500, type: 'income' },
+      { id: 'm-2',  date: '30.04', emoji: '🍱', name: 'Проезд+еда (1 раб.день)',          amount: -1280,  type: 'spend' },
+      { id: 'm-3',  date: '02.05', emoji: '📱', name: 'МТС + Облако (Виктория)',         amount: -600,   type: 'spend' },
+      { id: 'm-4',  date: '02.05', emoji: '🛒', name: 'Продукты неделя 1 (урезано)',     amount: -6000,  type: 'spend', note: '4 000 экономии — в фонд июня' },
+      { id: 'm-5',  date: '04.05', emoji: '💰', name: 'Приход С1',                       amount: +90000, type: 'income' },
+      { id: 'm-6',  date: '04.05', emoji: '🍱', name: 'Проезд+еда (1 раб.день)',          amount: -1280,  type: 'spend' },
+      { id: 'm-7',  date: '05.05', emoji: '🏠', name: 'Квартира + интернет (за апрель)',  amount: -40870, type: 'priority', note: 'Закрываем просрочку' },
+      { id: 'm-8',  date: '05.05', emoji: '👵', name: 'Мама В: минимум 10к + хвост 7к',   amount: -17000, type: 'priority', note: 'Хвост за апрель закрываем' },
+      { id: 'm-9',  date: '05.05', emoji: '👵', name: 'Бабушка Р: хвост за апрель',       amount: -3000,  type: 'priority', closes: 'Бабушка Р хвост' },
+      { id: 'm-10', date: '05-08', emoji: '🍱', name: 'Проезд+еда (4 раб.дня)',          amount: -5120,  type: 'spend' },
+      { id: 'm-11', date: '07.05', emoji: '💰', name: 'Приход С2',                       amount: +10000, type: 'income' },
+      { id: 'm-12', date: '09.05', emoji: '🛒', name: 'Продукты неделя 2',                amount: -10000, type: 'spend' },
+      { id: 'm-13', date: '10.05', emoji: '💰', name: 'Приход С2',                       amount: +8500,  type: 'income' },
+      { id: 'm-14', date: '10.05', emoji: '📱', name: 'Подписка 888₽ (Роман)',           amount: -888,   type: 'spend' },
+      { id: 'm-15', date: '11-15', emoji: '🍱', name: 'Проезд+еда (5 раб.дней)',         amount: -6400,  type: 'spend' },
+      { id: 'm-16', date: '12.05', emoji: '📱', name: 'Подписка ИИ (Роман)',              amount: -1700,  type: 'spend' },
+      { id: 'm-17', date: '13.05', emoji: '💳', name: 'К2 Банк Я — минимум',              amount: -10000, type: 'spend' },
+      { id: 'm-18', date: '13.05', emoji: '💳', name: 'К4 Банк С — минимум',              amount: -7632,  type: 'spend' },
+      { id: 'm-19', date: '13.05', emoji: '⛽', name: 'Бензин 1',                         amount: -1250,  type: 'spend' },
+      { id: 'm-20', date: '15.05', emoji: '💰', name: 'Приход С2',                       amount: +12500, type: 'income' },
+      { id: 'm-21', date: '15.05', emoji: '📱', name: 'ТГ 2 акк (Роман)',                 amount: -299,   type: 'spend' },
+      { id: 'm-22', date: '16.05', emoji: '🛒', name: 'Продукты неделя 3',                amount: -10000, type: 'spend' },
+      { id: 'm-23', date: '18.05', emoji: '💰', name: 'Приход С1',                       amount: +100000,type: 'income' },
+      { id: 'm-24', date: '18.05', emoji: '👴', name: 'Дед Р — минимум',                  amount: -10000, type: 'spend' },
+      { id: 'm-25', date: '18-22', emoji: '🍱', name: 'Проезд+еда (5 раб.дней)',         amount: -6400,  type: 'spend' },
+      { id: 'm-26', date: '20.05', emoji: '💳', name: 'К3 Банк Т — минимум',              amount: -11020, type: 'spend' },
+      { id: 'm-27', date: '23.05', emoji: '🛒', name: 'Продукты неделя 4',                amount: -10000, type: 'spend' },
+      { id: 'm-28', date: '25.05', emoji: '💰', name: 'Приход С2',                       amount: +8500,  type: 'income' },
+      { id: 'm-29', date: '25-29', emoji: '🍱', name: 'Проезд+еда (5 раб.дней)',         amount: -6400,  type: 'spend' },
+      { id: 'm-30', date: '26.05', emoji: '👵', name: 'Мама Р: минимум 10к + хвост 1.5к', amount: -11500, type: 'priority', note: 'Хвост закрываем вместе с минимумом' },
+      { id: 'm-31', date: '26.05', emoji: '🌐', name: 'Интернет за май',                  amount: -870,   type: 'spend' },
+      { id: 'm-32', date: '26.05', emoji: '📱', name: 'ТГ (Виктория)',                    amount: -299,   type: 'spend' },
+      { id: 'm-33', date: '27.05', emoji: '💄', name: 'Уход',                             amount: -8000,  type: 'spend' },
+      { id: 'm-34', date: '27.05', emoji: '⛽', name: 'Бензин 2',                         amount: -1250,  type: 'spend' },
+      { id: 'm-35', date: '28.05', emoji: '💳', name: 'К1 Банк Р — минимум',              amount: -5530,  type: 'spend' },
+      { id: 'm-36', date: '30.05', emoji: '💰', name: 'Приход С2',                       amount: +12500, type: 'income' },
+      { id: 'm-37', date: '30.05', emoji: '🛒', name: 'Продукты неделя 5',                amount: -10000, type: 'spend' },
+      { id: 'm-38', date: '30.05', emoji: '📱', name: 'ТГ 1 акк (Роман)',                 amount: -299,   type: 'spend' },
+      { id: 'm-39', date: '31.05', emoji: '🛡️', name: 'В буфер ЧП',                      amount: -15000, type: 'buffer', note: 'Резерв на непредвиденное' },
+      { id: 'm-40', date: '31.05', emoji: '🐷', name: 'В фонд июня (для Мамы В)',         amount: -34613, type: 'cushion', note: 'Готовим закрытие Мамы В одной суммой' }
+    ]
+  },
+  {
+    id: 'jun',
+    title: 'Июнь',
+    year: '2026',
+    accent: 'минус 4 долга',
+    bonus: true,
+    summary: 'БОНУС-МЕСЯЦ (3 ЗП). Закрываем Маму В одной суммой 5 июня. Минимумом К2 и Мама Р. Свободное — в К4.',
+    overview: { 'Доход': '+252 000', 'Жизнь+быт': '−125 336', 'Закрытие Мамы В': '−50 000', 'Минимумы долгов': '−54 182', 'В досрочку К4': '~−72 500' },
+    targets: ['Мама В — закрыть', 'К2 Банк Я — последний', 'Мама Р — последний', 'К4 Банк С — закрыть на 90%'],
+    actions: [
+      { id: 'j-1',  date: '01.06',  emoji: '💰', name: 'Приход С1',                       amount: +50000, type: 'income' },
+      { id: 'j-2',  date: '05.06',  emoji: '👵', name: 'МАМА В — финальное закрытие',     amount: -50000, type: 'priority', closes: 'Мама В', last: true, note: '50 000 одной суммой. Получить расписку.' },
+      { id: 'j-3',  date: '05.06',  emoji: '🏠', name: 'Квартира + интернет (за май)',     amount: -40870, type: 'spend' },
+      { id: 'j-4',  date: '07.06',  emoji: '💰', name: 'Приход С2',                       amount: +10000, type: 'income' },
+      { id: 'j-5',  date: '10.06',  emoji: '💰', name: 'Приход С2',                       amount: +8500,  type: 'income' },
+      { id: 'j-6',  date: '13.06',  emoji: '💳', name: 'К2 Банк Я — ПОСЛЕДНИЙ минимум',   amount: -10000, type: 'priority', closes: 'К2 Банк Я', last: true },
+      { id: 'j-7',  date: '13.06',  emoji: '💳', name: 'К4 Банк С — минимум',              amount: -7632,  type: 'spend' },
+      { id: 'j-8',  date: '15.06',  emoji: '💰', name: 'Приход С1',                       amount: +100000,type: 'income' },
+      { id: 'j-9',  date: '~15.06', emoji: '🚀', name: 'К4 Банк С — досрочка из фонда',   amount: -50000, type: 'priority', note: 'Заявление: «в уменьшение срока»' },
+      { id: 'j-10', date: '18.06',  emoji: '👴', name: 'Дед Р — минимум',                  amount: -10000, type: 'spend' },
+      { id: 'j-11', date: '20.06',  emoji: '💳', name: 'К3 Банк Т — минимум',              amount: -11020, type: 'spend' },
+      { id: 'j-12', date: '25.06',  emoji: '💰', name: 'Приход С2',                       amount: +8500,  type: 'income' },
+      { id: 'j-13', date: '26.06',  emoji: '👵', name: 'Мама Р — ПОСЛЕДНИЙ минимум',      amount: -10000, type: 'priority', closes: 'Мама Р', last: true },
+      { id: 'j-14', date: '28.06',  emoji: '💳', name: 'К1 Банк Р — минимум',              amount: -5530,  type: 'spend' },
+      { id: 'j-15', date: '29.06',  emoji: '💰', name: 'Приход С1 (3-я ЗП — бонус!)',     amount: +50000, type: 'income', bonus: true },
+      { id: 'j-16', date: '30.06',  emoji: '💰', name: 'Приход С2',                       amount: +12500, type: 'income' },
+      { id: 'j-17', date: '~30.06', emoji: '🚀', name: 'К4 Банк С — добивка из бонуса',  amount: -22500, type: 'priority', note: 'Остаток после досрочки' },
+      { id: 'j-18', date: '~30.06', emoji: '🍱', name: 'Проезд+еда (~21 раб.день)',      amount: -26880, type: 'spend' },
+      { id: 'j-19', date: '~30.06', emoji: '🛒', name: 'Продукты (4-5 недель)',          amount: -43000, type: 'spend' },
+      { id: 'j-20', date: '~30.06', emoji: '⛽', name: 'Бензин (2 заправки)',             amount: -2500,  type: 'spend' },
+      { id: 'j-21', date: '~30.06', emoji: '💄', name: 'Уход',                            amount: -8000,  type: 'spend' },
+      { id: 'j-22', date: '~30.06', emoji: '📱', name: 'Связь (подписки за месяц)',      amount: -4086,  type: 'spend' }
+    ]
+  },
+  {
+    id: 'jul',
+    title: 'Июль',
+    year: '2026',
+    accent: 'добивка',
+    summary: 'Закрываем К4 окончательно, К3 Банк Т, Деда Р. Большую часть К1 — досрочкой.',
+    overview: { 'Доход': '+~202 000', 'Жизнь+быт': '−125 336', 'Минимумы оставшихся': '−26 550', 'В досрочку К3 → К1': '~−50 000' },
+    targets: ['К4 Банк С — финальное закрытие', 'К3 Банк Т — закрыть', 'Дед Р — последний', 'К1 Банк Р — добить'],
+    actions: [
+      { id: 'l-1',  date: '~05.07', emoji: '🏠', name: 'Квартира + интернет (за июнь)',  amount: -40870, type: 'spend' },
+      { id: 'l-2',  date: '06.07',  emoji: '💰', name: 'Приход С1',                      amount: +50000, type: 'income' },
+      { id: 'l-3',  date: '~10.07', emoji: '🚀', name: 'К3 Банк Т — досрочка на закрытие', amount: -22000, type: 'priority', closes: 'К3 Банк Т', last: true },
+      { id: 'l-4',  date: '13.07',  emoji: '💳', name: 'К4 Банк С — финал (если остался)', amount: -7632, type: 'priority', closes: 'К4 Банк С' },
+      { id: 'l-5',  date: '18.07',  emoji: '👴', name: 'Дед Р — ПОСЛЕДНИЙ минимум',      amount: -10000, type: 'priority', closes: 'Дед Р', last: true },
+      { id: 'l-6',  date: '~20.07', emoji: '💰', name: 'Приход С1',                      amount: +100000,type: 'income' },
+      { id: 'l-7',  date: '~25.07', emoji: '🚀', name: 'К1 Банк Р — досрочка',           amount: -45000, type: 'priority' },
+      { id: 'l-8',  date: '28.07',  emoji: '💳', name: 'К1 Банк Р — минимум',             amount: -5530,  type: 'spend' },
+      { id: 'l-9',  date: '~31.07', emoji: '🍱', name: 'Проезд+еда (~23 раб.дня)',       amount: -29440, type: 'spend' },
+      { id: 'l-10', date: '~31.07', emoji: '🛒', name: 'Продукты (4-5 недель)',          amount: -43000, type: 'spend' },
+      { id: 'l-11', date: '~31.07', emoji: '⛽', name: 'Бензин',                          amount: -2500,  type: 'spend' },
+      { id: 'l-12', date: '~31.07', emoji: '💄', name: 'Уход',                            amount: -8000,  type: 'spend' },
+      { id: 'l-13', date: '~31.07', emoji: '📱', name: 'Связь',                           amount: -4086,  type: 'spend' },
+      { id: 'l-14', date: '~31.07', emoji: '💰', name: 'С2 — поступления за июль',       amount: +52000, type: 'income' }
+    ]
+  },
+  {
+    id: 'aug',
+    title: 'Август',
+    year: '2026',
+    accent: 'финал',
+    summary: 'Остался только К1 Банк Р. Закрываем минимумом. Весь свободный поток — в подушку.',
+    overview: { 'Доход': '+~202 000', 'Жизнь+быт': '−125 336', 'Финал К1': '−~6 000', 'В подушку': '~+70 000' },
+    targets: ['К1 Банк Р — последний платёж', 'Старт подушки безопасности'],
+    actions: [
+      { id: 'a-1',  date: '~05.08', emoji: '🏠', name: 'Квартира + интернет',             amount: -40870, type: 'spend' },
+      { id: 'a-2',  date: '~10.08', emoji: '💰', name: 'Приход С1',                       amount: +50000, type: 'income' },
+      { id: 'a-3',  date: '~15.08', emoji: '💳', name: 'К1 Банк Р — ФИНАЛЬНОЕ закрытие',  amount: -6000,  type: 'priority', closes: 'К1 Банк Р', last: true, note: 'Получить справку о полном закрытии всех кредитов!' },
+      { id: 'a-4',  date: '~20.08', emoji: '💰', name: 'Приход С1',                       amount: +100000,type: 'income' },
+      { id: 'a-5',  date: '~31.08', emoji: '🍱', name: 'Проезд+еда',                      amount: -29440, type: 'spend' },
+      { id: 'a-6',  date: '~31.08', emoji: '🛒', name: 'Продукты',                         amount: -43000, type: 'spend' },
+      { id: 'a-7',  date: '~31.08', emoji: '⛽', name: 'Бензин',                           amount: -2500,  type: 'spend' },
+      { id: 'a-8',  date: '~31.08', emoji: '💄', name: 'Уход',                             amount: -8000,  type: 'spend' },
+      { id: 'a-9',  date: '~31.08', emoji: '📱', name: 'Связь',                            amount: -4086,  type: 'spend' },
+      { id: 'a-10', date: '~31.08', emoji: '💰', name: 'С2 — поступления за месяц',       amount: +52000, type: 'income' },
+      { id: 'a-11', date: '~31.08', emoji: '🐷', name: 'В подушку безопасности',           amount: -70000, type: 'cushion', note: 'Старт. Цель — 6 месяцев расходов (~840 000 ₽)' }
+    ]
+  }
+];
+
+const CATEGORIES = {
+  income: [
+    { v: 'salary', l: '💼 Зарплата (база)' },
+    { v: 'variable', l: '📈 Переменная (продажи)' },
+    { v: 'bonus', l: '🎁 Премия / бонус' },
+    { v: 'other', l: '➕ Другое' }
+  ],
+  expense: [
+    { v: 'food', l: '🛒 Продукты' },
+    { v: 'transport', l: '🍱 Транспорт + еда' },
+    { v: 'connection', l: '📱 Связь' },
+    { v: 'unexpected', l: '⚡ Непредвиденное' },
+    { v: 'other', l: '➕ Другое' }
+  ]
+};
+
+let actionStates = {};
+let manualEntries = [];
+const RULE = { debt: 0.60, cushion: 0.25, fun: 0.15 };
+const OVERFLOW_THRESHOLD = 5000;
+let firebaseReady = false;
+let initialLoaded = { actions: false, entries: false };
+
+function getCurrentMonth() {
+  const today = new Date();
+  const monthIdx = today.getMonth();
+  const ids = ['may', 'jun', 'jul', 'aug'];
+  if (monthIdx >= 4 && monthIdx <= 7) return ids[monthIdx - 4];
+  for (const m of PLAN) {
+    if (!m.actions.every(a => actionStates[a.id])) return m.id;
+  }
+  return PLAN[0].id;
+}
+
+// ===== Firebase интеграция =====
+async function saveActionsToFirebase() {
+  if (!firebaseReady) return;
+  try {
+    await window.firebaseDB.setActions(actionStates);
+    setSyncStatus(true);
+  } catch (e) {
+    console.warn('Save actions failed:', e);
+    setSyncStatus(false);
+  }
+}
+
+async function saveEntriesToFirebase() {
+  if (!firebaseReady) return;
+  try {
+    // Firebase не любит массивы — храним как объект
+    const obj = {};
+    manualEntries.forEach((e, i) => obj[i] = e);
+    await window.firebaseDB.setEntries(obj);
+    setSyncStatus(true);
+  } catch (e) {
+    console.warn('Save entries failed:', e);
+    setSyncStatus(false);
+  }
+}
+
+function setSyncStatus(ok) {
+  const dot = document.querySelector('.sync-dot');
+  const text = document.getElementById('syncText');
+  if (ok) {
+    if (dot) { dot.style.background = 'var(--green)'; dot.style.animation = 'pulse 2s infinite'; }
+    if (text) text.textContent = 'Синхронизация активна · Виктория & Роман';
+  } else {
+    if (dot) { dot.style.background = 'var(--gold)'; dot.style.animation = 'none'; }
+    if (text) text.textContent = 'Локально (синхронизация при восстановлении)';
+  }
+}
+
+function hideLoading() {
+  if (initialLoaded.actions && initialLoaded.entries) {
+    setTimeout(() => {
+      const ls = document.getElementById('loadingScreen');
+      ls.classList.add('hidden');
+      setTimeout(() => ls.remove(), 300);
+    }, 200);
+  }
+}
+
+function setupFirebaseWatchers() {
+  window.firebaseDB.watchActions((data) => {
+    actionStates = data || {};
+    initialLoaded.actions = true;
+    setSyncStatus(true);
+    render();
+    hideLoading();
+  });
+  window.firebaseDB.watchEntries((data) => {
+    if (data) {
+      manualEntries = Object.keys(data)
+        .sort((a, b) => parseInt(a) - parseInt(b))
+        .map(k => data[k]);
+    } else {
+      manualEntries = [];
+    }
+    initialLoaded.entries = true;
+    setSyncStatus(true);
+    render();
+    hideLoading();
+  });
+}
+
+window.addEventListener('firebase-ready', () => {
+  firebaseReady = true;
+  setupFirebaseWatchers();
+  // Если за 5 сек ничего не пришло — скрываем загрузку
+  setTimeout(() => {
+    initialLoaded.actions = true;
+    initialLoaded.entries = true;
+    hideLoading();
+  }, 5000);
+});
+
+// ===== Утилиты =====
+function fmt(n) { return Math.abs(n).toLocaleString('ru-RU').replace(/,/g, ' '); }
+function fmtSigned(n) {
+  if (n === 0) return '0 ₽';
+  return (n > 0 ? '+' : '−') + fmt(n) + ' ₽';
+}
+function getAllPlanActions() { return PLAN.flatMap(m => m.actions); }
+
+function computeBalance() {
+  let pocketBuffer = 0, pocketCushion = 0, pocketFlow = 0;
+  for (const a of getAllPlanActions()) {
+    if (!actionStates[a.id]) continue;
+    if (a.type === 'buffer') {
+      pocketBuffer += Math.abs(a.amount);
+      pocketFlow += a.amount;
+    } else if (a.type === 'cushion') {
+      pocketCushion += Math.abs(a.amount);
+      pocketFlow += a.amount;
+    } else {
+      pocketFlow += a.amount;
+    }
+  }
+  for (const e of manualEntries) {
+    pocketFlow += e.amount;
+  }
+  return { total: pocketFlow + pocketBuffer + pocketCushion, pocketFlow, pocketBuffer, pocketCushion };
+}
+
+function computePlanVsFact() {
+  const monthId = getCurrentMonth();
+  const month = PLAN.find(m => m.id === monthId);
+  let planIncome = 0, planExpense = 0, factIncome = 0, factExpense = 0;
+  for (const a of month.actions) {
+    if (a.type === 'buffer' || a.type === 'cushion') continue;
+    if (a.amount > 0) planIncome += a.amount;
+    else planExpense += Math.abs(a.amount);
+  }
+  for (const a of month.actions) {
+    if (!actionStates[a.id]) continue;
+    if (a.type === 'buffer' || a.type === 'cushion') continue;
+    if (a.amount > 0) factIncome += a.amount;
+    else factExpense += Math.abs(a.amount);
+  }
+  for (const e of manualEntries) {
+    if (e.monthId !== monthId) continue;
+    if (e.amount > 0) factIncome += e.amount;
+    else factExpense += Math.abs(e.amount);
+  }
+  return { monthId, planIncome, planExpense, factIncome, factExpense };
+}
+
+function computeAlerts() {
+  const pf = computePlanVsFact();
+  const alerts = [];
+  if (pf.factExpense > 0 && pf.planExpense > 0) {
+    const month = PLAN.find(m => m.id === pf.monthId);
+    const totalSteps = month.actions.length;
+    const doneSteps = month.actions.filter(a => actionStates[a.id]).length;
+    const progress = doneSteps / totalSteps;
+    if (progress > 0.1) {
+      const expectedExpense = pf.planExpense * progress;
+      const overspend = pf.factExpense - expectedExpense;
+      const overspendPct = (overspend / expectedExpense) * 100;
+      if (overspendPct > 30) {
+        alerts.push({ level: 'red', icon: '🔴', title: 'Критическое превышение расходов',
+          text: `Темп трат на ${overspendPct.toFixed(0)}% выше плана. К концу месяца перерасход может составить ~${fmt(Math.round(pf.planExpense * overspendPct/100))} ₽.` });
+      } else if (overspendPct > 15) {
+        alerts.push({ level: 'orange', icon: '🟠', title: 'Риск нехватки средств',
+          text: `Расходы на ${overspendPct.toFixed(0)}% выше плана. Фонд июня может уменьшиться: вместо 34 613 ₽ останется ~${fmt(Math.max(0, Math.round(34613 - pf.planExpense * overspendPct/100)))} ₽.` });
+      } else if (overspendPct > 5) {
+        alerts.push({ level: 'yellow', icon: '🟡', title: 'Темп выше плана',
+          text: `Расходы на ${overspendPct.toFixed(0)}% выше ожидаемого.` });
+      }
+    }
+  }
+  return alerts;
+}
+
+function computeOverflow() {
+  const pf = computePlanVsFact();
+  const incomeOver = pf.factIncome - pf.planIncome;
+  if (incomeOver < OVERFLOW_THRESHOLD) return null;
+  return {
+    amount: incomeOver,
+    debt: Math.round(incomeOver * RULE.debt),
+    cushion: Math.round(incomeOver * RULE.cushion),
+    fun: Math.round(incomeOver * RULE.fun)
+  };
+}
+
+async function applyOverflow() {
+  const ov = computeOverflow();
+  if (!ov) return;
+  const monthId = getCurrentMonth();
+  const today = new Date().toISOString().slice(0, 10);
+  const ts = Date.now();
+  manualEntries.push(
+    { id: 'm_'+ts+'_1', date: today, amount: -ov.debt, type: 'spend', who: 'Общее', category: 'Распределение: досрочка', note: 'Авто', monthId },
+    { id: 'm_'+ts+'_2', date: today, amount: -ov.cushion, type: 'spend', who: 'Общее', category: 'Распределение: подушка', note: 'Авто', monthId },
+    { id: 'm_'+ts+'_3', date: today, amount: -ov.fun, type: 'spend', who: 'Общее', category: 'Распределение: праздники', note: 'Авто', monthId }
+  );
+  await saveEntriesToFirebase();
+  render();
+}
+
+// ===== Рендер =====
+function renderBalance() {
+  const b = computeBalance();
+  const balEl = document.getElementById('balanceMain');
+  balEl.classList.toggle('negative', b.total < 0);
+  const sign = b.total < 0 ? '−' : '';
+  balEl.innerHTML = `${sign}${fmt(b.total)}<span class="currency">₽</span>`;
+  const factsCount = manualEntries.length;
+  const checkedCount = Object.values(actionStates).filter(Boolean).length;
+  const totalOps = factsCount + checkedCount;
+  document.getElementById('balanceMeta').textContent = totalOps === 0 ? 'пока не было операций' : `обновлено: только что · ${totalOps} ${totalOps === 1 ? 'операция' : (totalOps < 5 ? 'операции' : 'операций')}`;
+  const flowEl = document.getElementById('pocketFlow');
+  flowEl.classList.toggle('neg', b.pocketFlow < 0);
+  flowEl.textContent = `${b.pocketFlow < 0 ? '−' : ''}${fmt(b.pocketFlow)} ₽`;
+  document.getElementById('pocketBuffer').textContent = `${fmt(b.pocketBuffer)} ₽`;
+  document.getElementById('pocketCushion').textContent = `${fmt(b.pocketCushion)} ₽`;
+}
+
+function renderAlerts() {
+  const alerts = computeAlerts();
+  const box = document.getElementById('alertBox');
+  box.innerHTML = alerts.map(a => `
+    <div class="alert alert-${a.level}">
+      <div class="alert-icon">${a.icon}</div>
+      <div><div class="alert-title">${a.title}</div><div>${a.text}</div></div>
+    </div>
+  `).join('');
+}
+
+function renderOverflow() {
+  const ov = computeOverflow();
+  const box = document.getElementById('overflowBox');
+  if (!ov) { box.innerHTML = ''; return; }
+  box.innerHTML = `
+    <div class="overflow-card">
+      <div class="overflow-title">🎉 Сверх плана</div>
+      <div class="overflow-amount">+${fmt(ov.amount)} ₽</div>
+      <div class="overflow-text">
+        Распределить по правилу 60/25/15:<br>
+        • <strong>${fmt(ov.debt)} ₽</strong> в досрочку (К4)<br>
+        • <strong>${fmt(ov.cushion)} ₽</strong> в подушку<br>
+        • <strong>${fmt(ov.fun)} ₽</strong> на праздники/одежду
+      </div>
+      <div class="overflow-buttons">
+        <button class="btn green" id="overflowApply">Применить</button>
+        <button class="btn" id="overflowDismiss">Позже</button>
+      </div>
+    </div>
+  `;
+  document.getElementById('overflowApply').addEventListener('click', applyOverflow);
+  document.getElementById('overflowDismiss').addEventListener('click', () => box.innerHTML = '');
+}
+
+function renderPlanVsFact() {
+  const pf = computePlanVsFact();
+  document.getElementById('pfPlanIncome').textContent = '+' + fmt(pf.planIncome);
+  document.getElementById('pfPlanExpense').textContent = '−' + fmt(pf.planExpense);
+  document.getElementById('pfFactIncome').textContent = '+' + fmt(pf.factIncome);
+  document.getElementById('pfFactExpense').textContent = '−' + fmt(pf.factExpense);
+  const planNet = pf.planIncome - pf.planExpense;
+  const factNet = pf.factIncome - pf.factExpense;
+  const delta = factNet - planNet;
+  const deltaEl = document.getElementById('pfDelta');
+  if (pf.factIncome === 0 && pf.factExpense === 0) {
+    deltaEl.textContent = '—';
+    deltaEl.className = 'pf-cell muted';
+  } else {
+    deltaEl.textContent = fmtSigned(delta);
+    deltaEl.className = 'pf-cell ' + (delta >= 0 ? 'green' : 'red');
+  }
+}
+
+function renderAction(a) {
+  const checked = !!actionStates[a.id];
+  const cls = ['action'];
+  if (a.type === 'income') cls.push('income');
+  if (a.type === 'priority') cls.push('priority');
+  if (checked) cls.push('checked');
+  let badges = '';
+  if (a.last) badges += '<span class="badge last">закрыт</span>';
+  if (a.bonus) badges += '<span class="badge bonus">бонус</span>';
+  const note = a.note ? `<div class="action-note">${a.note}</div>` : '';
+  const sign = a.amount > 0 ? '+' : '−';
+  const amountClass = a.amount > 0 ? 'in' : 'out';
+  return `
+    <div class="${cls.join(' ')}" data-action-id="${a.id}">
+      <div class="checkbox"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"/></svg></div>
+      <div class="action-content">
+        <div class="action-row">
+          <span class="action-date">${a.date}</span>
+          <span class="action-emoji">${a.emoji}</span>
+          <span class="action-name">${a.name}${badges}</span>
+          <span class="action-amount ${amountClass}">${sign}${fmt(a.amount)} ₽</span>
+        </div>
+        ${note}
+      </div>
+    </div>
+  `;
+}
+
+function renderManualEntry(e) {
+  const sign = e.amount > 0 ? '+' : '−';
+  const amountClass = e.amount > 0 ? 'in' : 'out';
+  const dateShort = e.date ? e.date.slice(8, 10) + '.' + e.date.slice(5, 7) : '';
+  const emoji = e.amount > 0 ? '💰' : '💸';
+  const noteText = [e.who, e.category, e.note].filter(Boolean).join(' · ');
+  return `
+    <div class="action manual" data-manual-id="${e.id}">
+      <div class="checkbox" style="background: var(--gold); border-color: var(--gold);">
+        <svg viewBox="0 0 24 24" style="opacity:1"><polyline points="4,12 10,18 20,6"/></svg>
+      </div>
+      <div class="action-content">
+        <div class="action-row">
+          <span class="action-date">${dateShort}</span>
+          <span class="action-emoji">${emoji}</span>
+          <span class="action-name">${e.category || 'Факт'}<span class="badge manual">факт</span></span>
+          <span class="action-amount ${amountClass}">${sign}${fmt(e.amount)} ₽</span>
+          <button class="delete-btn" data-delete-id="${e.id}">×</button>
+        </div>
+        ${noteText ? `<div class="action-note">${noteText}</div>` : ''}
+      </div>
+    </div>
+  `;
+}
+
+function renderMonth(month) {
+  const completed = month.actions.every(a => actionStates[a.id]);
+  const done = month.actions.filter(a => actionStates[a.id]).length;
+  const total = month.actions.length;
+  const monthFacts = manualEntries.filter(e => e.monthId === month.id);
+  const closed = new Set();
+  getAllPlanActions().forEach(a => {
+    if (a.last && a.closes && actionStates[a.id]) closed.add(a.closes);
+  });
+  const cls = ['month-card'];
+  if (completed) cls.push('completed');
+  let bonusBadge = month.bonus ? '<span class="badge bonus">бонус</span>' : '';
+  let overviewHtml = '';
+  if (month.overview) {
+    const items = Object.entries(month.overview).map(([k, v]) => {
+      const isPlus = String(v).startsWith('+');
+      const cssCls = isPlus ? 'green' : 'red';
+      return `<div class="ov-item"><div class="ov-label">${k}</div><div class="ov-value ${cssCls}">${v}</div></div>`;
+    }).join('');
+    overviewHtml = `<div class="month-overview">${items}</div>`;
+  }
+  let targetsHtml = '';
+  if (month.targets && month.targets.length) {
+    const chips = month.targets.map(t => {
+      const isDone = [...closed].some(d => t.includes(d));
+      return `<div class="target-chip ${isDone ? 'done' : ''}">${t}</div>`;
+    }).join('');
+    targetsHtml = `<div class="targets"><div class="targets-title">Цели месяца</div><div class="target-list">${chips}</div></div>`;
+  }
+  const accent = completed ? 'завершено' : month.accent;
+  let manualHtml = '';
+  if (monthFacts.length > 0) {
+    manualHtml = `<div class="section-title">Факты — ручной ввод (${monthFacts.length})</div>${monthFacts.map(renderManualEntry).join('')}`;
+  }
+  return `
+    <div class="${cls.join(' ')}" data-month-id="${month.id}">
+      <div class="month-header" data-toggle="${month.id}">
+        <div class="month-title-block">
+          <div class="month-num">${month.year}</div>
+          <div class="month-title">${month.title} <em>· ${accent}</em>${bonusBadge}</div>
+          <div class="month-summary">${month.summary}</div>
+        </div>
+        <div class="month-progress">
+          <div class="month-progress-num">${done}/${total}</div>
+          <div class="month-progress-label">шагов <span class="chevron">›</span></div>
+        </div>
+      </div>
+      <div class="month-body">
+        ${overviewHtml}
+        ${targetsHtml}
+        <div class="section-title">План по дням</div>
+        ${month.actions.map(renderAction).join('')}
+        ${manualHtml}
+      </div>
+    </div>
+  `;
+}
+
+function render() {
+  const monthsEl = document.getElementById('months');
+  const openIds = new Set();
+  document.querySelectorAll('.month-card.open').forEach(c => openIds.add(c.dataset.monthId));
+  monthsEl.innerHTML = PLAN.map(renderMonth).join('');
+  openIds.forEach(id => {
+    const card = monthsEl.querySelector(`[data-month-id="${id}"]`);
+    if (card) card.classList.add('open');
+  });
+  const all = getAllPlanActions();
+  const doneCount = all.filter(a => actionStates[a.id]).length;
+  const totalCount = all.length;
+  const closed = new Set();
+  all.forEach(a => {
+    if (a.last && a.closes && actionStates[a.id]) closed.add(a.closes);
+  });
+  document.getElementById('closedCount').textContent = closed.size;
+  document.getElementById('actionsCount').textContent = doneCount;
+  document.getElementById('actionsTotal').textContent = totalCount;
+  document.getElementById('factsCount').textContent = manualEntries.length;
+  document.getElementById('barFill').style.width = totalCount > 0 ? (doneCount / totalCount * 100) + '%' : '0%';
+  document.getElementById('celebration').classList.toggle('show', doneCount === totalCount && totalCount > 0);
+  renderBalance();
+  renderPlanVsFact();
+  renderAlerts();
+  renderOverflow();
+}
+
+// ===== Модалка =====
+let currentFormType = 'income';
+
+function openModal() {
+  currentFormType = 'income';
+  document.getElementById('modalType').textContent = 'доход';
+  document.querySelectorAll('.type-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.type === 'income');
+  });
+  document.getElementById('formDate').value = new Date().toISOString().slice(0, 10);
+  document.getElementById('formAmount').value = '';
+  document.getElementById('formNote').value = '';
+  updateCategoryOptions();
+  document.getElementById('modal').classList.add('show');
+  setTimeout(() => document.getElementById('formAmount').focus(), 100);
+}
+
+function closeModal() { document.getElementById('modal').classList.remove('show'); }
+
+function updateCategoryOptions() {
+  const select = document.getElementById('formCategory');
+  const cats = CATEGORIES[currentFormType];
+  select.innerHTML = cats.map(c => `<option value="${c.v}">${c.l}</option>`).join('');
+}
+
+async function saveManualEntry() {
+  const amount = parseFloat(document.getElementById('formAmount').value);
+  if (isNaN(amount) || amount <= 0) {
+    alert('Введите сумму больше 0');
+    return;
+  }
+  const date = document.getElementById('formDate').value;
+  const who = document.getElementById('formWho').value;
+  const categoryVal = document.getElementById('formCategory').value;
+  const cats = CATEGORIES[currentFormType];
+  const categoryLabel = cats.find(c => c.v === categoryVal)?.l || categoryVal;
+  const note = document.getElementById('formNote').value.trim();
+  const d = new Date(date);
+  const monthIdx = d.getMonth();
+  const ids = ['may', 'jun', 'jul', 'aug'];
+  const monthId = ids[monthIdx - 4] || getCurrentMonth();
+  manualEntries.push({
+    id: 'm_' + Date.now(),
+    date,
+    amount: currentFormType === 'income' ? amount : -amount,
+    type: currentFormType === 'income' ? 'income' : 'spend',
+    who, category: categoryLabel, note, monthId
+  });
+  await saveEntriesToFirebase();
+  closeModal();
+  render();
+}
+
+async function deleteManualEntry(id) {
+  if (!confirm('Удалить эту запись?')) return;
+  manualEntries = manualEntries.filter(e => e.id !== id);
+  await saveEntriesToFirebase();
+  render();
+}
+
+async function resetState() {
+  if (!confirm('Сбросить ВСЕ отметки и факты? Действие синхронизируется.')) return;
+  actionStates = {};
+  manualEntries = [];
+  await saveActionsToFirebase();
+  await saveEntriesToFirebase();
+  render();
+}
+
+function attachEvents() {
+  document.addEventListener('click', async (e) => {
+    const delBtn = e.target.closest('[data-delete-id]');
+    if (delBtn) {
+      e.stopPropagation();
+      await deleteManualEntry(delBtn.dataset.deleteId);
+      return;
+    }
+    const action = e.target.closest('.action[data-action-id]');
+    if (action) {
+      const id = action.dataset.actionId;
+      actionStates[id] = !actionStates[id];
+      if (!actionStates[id]) delete actionStates[id]; // чистим false для Firebase
+      await saveActionsToFirebase();
+      render();
+      return;
+    }
+    const header = e.target.closest('.month-header');
+    if (header) {
+      header.closest('.month-card').classList.toggle('open');
+      return;
+    }
+  });
+  document.getElementById('expandAllBtn').addEventListener('click', () => {
+    document.querySelectorAll('.month-card').forEach(c => c.classList.add('open'));
+  });
+  document.getElementById('collapseAllBtn').addEventListener('click', () => {
+    document.querySelectorAll('.month-card').forEach(c => c.classList.remove('open'));
+  });
+  document.getElementById('resetBtn').addEventListener('click', resetState);
+  document.getElementById('fabBtn').addEventListener('click', openModal);
+  document.getElementById('modal').addEventListener('click', (e) => {
+    if (e.target.id === 'modal') closeModal();
+  });
+  document.getElementById('modalCancel').addEventListener('click', closeModal);
+  document.getElementById('modalSave').addEventListener('click', saveManualEntry);
+  document.getElementById('typeToggle').addEventListener('click', (e) => {
+    const btn = e.target.closest('.type-btn');
+    if (!btn) return;
+    currentFormType = btn.dataset.type;
+    document.getElementById('modalType').textContent = currentFormType === 'income' ? 'доход' : 'расход';
+    document.querySelectorAll('.type-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.type === currentFormType);
+    });
+    updateCategoryOptions();
+  });
+  document.getElementById('formAmount').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') saveManualEntry();
+  });
+}
+
+render();
+attachEvents();
+const currentId = getCurrentMonth();
+setTimeout(() => {
+  const card = document.querySelector(`[data-month-id="${currentId}"]`);
+  if (card) card.classList.add('open');
+}, 100);
+</script>
+</body>
+</html>
