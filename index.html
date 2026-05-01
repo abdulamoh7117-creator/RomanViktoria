@@ -6,7 +6,7 @@
 <title>Финансовый план — Виктория и Роман</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --bg: #f5f1e8; --bg-card: #fdfbf5; --bg-card-done: #e8efe4; --bg-card-locked: #ede8db;
@@ -22,14 +22,50 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   html, body { background: var(--bg); color: var(--ink); font-family: 'Manrope', sans-serif; font-size: 15px; line-height: 1.55; min-height: 100vh; -webkit-font-smoothing: antialiased; }
-  body { background-image: radial-gradient(circle at 12% 8%, rgba(176, 138, 62, 0.06), transparent 40%), radial-gradient(circle at 90% 90%, rgba(139, 40, 24, 0.04), transparent 50%); padding: 24px 16px 100px; }
+  body { background-image: radial-gradient(circle at 12% 8%, rgba(176, 138, 62, 0.08), transparent 40%), radial-gradient(circle at 90% 90%, rgba(139, 40, 24, 0.05), transparent 50%); padding: 24px 16px 100px; }
   .wrap { max-width: 920px; margin: 0 auto; }
-  header { margin-bottom: 20px; }
-  .eyebrow { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faded); margin-bottom: 6px; font-weight: 600; }
-  h1 { font-family: 'Fraunces', serif; font-weight: 400; font-size: clamp(26px, 6vw, 42px); line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 8px; }
-  h1 em { font-style: italic; font-weight: 300; color: var(--accent); }
+  header { margin-bottom: 22px; }
+  .eyebrow { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faded); margin-bottom: 8px; font-weight: 600; }
+
+  /* ВЫДЕЛЯЮЩИЙСЯ СЛОГАН */
+  .hero-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(34px, 8vw, 64px);
+    line-height: 1;
+    letter-spacing: -0.035em;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+  .hero-title .highlight {
+    background: linear-gradient(120deg, var(--accent) 0%, #b8412a 50%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-style: italic;
+    font-weight: 500;
+    position: relative;
+    padding: 0 4px;
+  }
+  .hero-title .palm {
+    display: inline-block;
+    font-style: normal;
+    -webkit-text-fill-color: initial;
+    transform: rotate(-12deg);
+    font-size: 0.85em;
+    margin-left: 4px;
+    filter: drop-shadow(0 4px 8px rgba(45, 106, 106, 0.3));
+  }
+  .hero-divider {
+    display: inline-block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--gold));
+    border-radius: 100px;
+    margin: 4px 0 10px;
+  }
   .lead { color: var(--ink-soft); max-width: 600px; font-size: 13px; }
-  .sync-hint { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; background: var(--bg-card); border: 1px solid var(--line); padding: 5px 11px; border-radius: 100px; font-size: 11px; color: var(--ink-soft); }
+  .sync-hint { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; background: var(--bg-card); border: 1px solid var(--line); padding: 5px 11px; border-radius: 100px; font-size: 11px; color: var(--ink-soft); }
   .sync-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
   @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(61, 107, 58, 0.5); } 70% { box-shadow: 0 0 0 8px rgba(61, 107, 58, 0); } }
 
@@ -108,7 +144,7 @@
   .chevron { display: inline-block; transition: transform 0.3s ease; color: var(--ink-faded); font-size: 18px; margin-left: 4px; }
   .month-card.open .chevron { transform: rotate(90deg); }
   .month-body { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-  .month-card.open .month-body { max-height: 8000px; }
+  .month-card.open .month-body { max-height: 9000px; }
   .month-overview { padding: 14px 22px; border-top: 1px solid var(--line-soft); background: rgba(176, 138, 62, 0.03); display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px; }
   .ov-item .ov-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--ink-faded); margin-bottom: 2px; font-weight: 600; }
   .ov-item .ov-value { font-family: 'Fraunces', serif; font-size: 16px; font-weight: 500; }
@@ -119,9 +155,25 @@
   .target-list { display: flex; flex-wrap: wrap; gap: 6px; }
   .target-chip { font-size: 11px; padding: 4px 10px; background: var(--bg); border: 1px solid var(--line); border-radius: 100px; color: var(--ink-soft); }
   .target-chip.done { background: var(--green); color: white; border-color: var(--green); }
-  .section-title { font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faded); font-weight: 600; padding: 14px 22px 4px; border-top: 1px solid var(--line-soft); }
+  .section-title {
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink-faded); font-weight: 600;
+    padding: 14px 22px 4px; border-top: 1px solid var(--line-soft);
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .section-action {
+    font-size: 11px; color: var(--accent); cursor: pointer;
+    text-transform: none; letter-spacing: 0; font-weight: 500;
+  }
+  .section-action:hover { text-decoration: underline; }
 
-  .action { display: flex; align-items: flex-start; gap: 12px; padding: 10px 22px; cursor: pointer; transition: background 0.15s ease; border-bottom: 1px solid var(--line-soft); }
+  .action {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 10px 22px;
+    transition: background 0.15s ease;
+    border-bottom: 1px solid var(--line-soft);
+    position: relative;
+  }
   .action:last-child { border-bottom: none; }
   .action:hover:not(.locked-action) { background: rgba(176, 138, 62, 0.04); }
   .action.income { background: rgba(61, 107, 58, 0.03); }
@@ -131,12 +183,17 @@
   .action.manual { border-left: 3px solid var(--gold); }
   .action.locked-action { cursor: not-allowed; opacity: 0.55; }
   .action.locked-action .checkbox { background: var(--line-soft); border-color: var(--line); }
-  .checkbox { width: 21px; height: 21px; border: 1.5px solid var(--ink-soft); border-radius: 6px; flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; background: var(--bg-card); transition: all 0.2s ease; }
+  .checkbox-area {
+    cursor: pointer;
+    flex-shrink: 0;
+    padding: 1px 0;
+  }
+  .checkbox { width: 21px; height: 21px; border: 1.5px solid var(--ink-soft); border-radius: 6px; display: flex; align-items: center; justify-content: center; background: var(--bg-card); transition: all 0.2s ease; }
   .action.checked .checkbox { background: var(--green); border-color: var(--green); }
   .action.checked.priority .checkbox { background: var(--accent); border-color: var(--accent); }
   .checkbox svg { width: 13px; height: 13px; stroke: white; stroke-width: 3; fill: none; opacity: 0; transition: opacity 0.2s ease; }
   .action.checked .checkbox svg { opacity: 1; }
-  .action-content { flex: 1; min-width: 0; }
+  .action-content { flex: 1; min-width: 0; cursor: pointer; }
   .action-row { display: flex; align-items: baseline; gap: 10px; flex-wrap: nowrap; }
   .action-date { font-family: 'Fraunces', serif; font-size: 12px; color: var(--ink-faded); font-style: italic; flex-shrink: 0; min-width: 42px; font-weight: 500; }
   .action-emoji { font-size: 14px; flex-shrink: 0; }
@@ -144,17 +201,33 @@
   .action.checked .action-name { text-decoration: line-through; text-decoration-thickness: 1px; color: var(--ink-faded); }
   .action.priority .action-name { color: var(--accent); font-weight: 600; }
   .action.priority.checked .action-name { color: var(--ink-faded); }
-  .action-amount { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; margin-left: auto; flex-shrink: 0; text-align: right; }
+  .action-amount { font-family: 'Fraunces', serif; font-size: 14px; font-weight: 500; flex-shrink: 0; text-align: right; }
   .action-amount.in { color: var(--green); }
   .action.priority .action-amount { color: var(--accent); font-weight: 600; }
   .action.checked .action-amount { color: var(--ink-faded); text-decoration: line-through; }
   .action-note { font-size: 11px; color: var(--ink-faded); margin-top: 3px; line-height: 1.4; font-style: italic; }
-  .delete-btn { background: none; border: none; color: var(--ink-faded); font-size: 16px; cursor: pointer; padding: 0 4px; margin-left: 6px; flex-shrink: 0; opacity: 0.5; transition: opacity 0.2s, color 0.2s; }
+  
+  /* КАРАНДАШИК */
+  .edit-btn {
+    background: none; border: none;
+    color: var(--ink-faded);
+    font-size: 14px;
+    cursor: pointer; padding: 0 4px;
+    flex-shrink: 0;
+    opacity: 0.4;
+    transition: opacity 0.2s, color 0.2s;
+    margin-left: 4px;
+  }
+  .action:hover .edit-btn { opacity: 0.7; }
+  .edit-btn:hover { opacity: 1 !important; color: var(--ink); }
+  .delete-btn { background: none; border: none; color: var(--ink-faded); font-size: 16px; cursor: pointer; padding: 0 4px; margin-left: 4px; flex-shrink: 0; opacity: 0.5; transition: opacity 0.2s, color 0.2s; }
   .delete-btn:hover { opacity: 1; color: var(--accent); }
+  
   .badge { display: inline-block; font-size: 9px; padding: 2px 6px; border-radius: 100px; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; margin-left: 4px; background: var(--accent); color: white; vertical-align: 1px; }
   .badge.last { background: var(--green); }
   .badge.bonus { background: var(--gold); }
   .badge.manual { background: var(--gold); }
+  .badge.edited { background: var(--teal); }
 
   .controls { display: flex; gap: 8px; margin-top: 22px; justify-content: flex-end; flex-wrap: wrap; }
   .btn { background: transparent; border: 1px solid var(--line); padding: 9px 14px; border-radius: 100px; font-family: inherit; font-size: 12px; color: var(--ink-soft); cursor: pointer; transition: all 0.2s ease; }
@@ -164,6 +237,8 @@
   .btn.primary:hover { background: var(--accent); border-color: var(--accent); color: white; }
   .btn.green { background: var(--green); color: white; border-color: var(--green); }
   .btn.green:hover { background: var(--green-soft); border-color: var(--green-soft); }
+  .btn.warn { background: var(--accent); color: white; border-color: var(--accent); }
+  .btn.warn:hover { background: #6e1f12; }
 
   .fab { position: fixed; bottom: 24px; right: 24px; width: 60px; height: 60px; background: var(--ink); color: var(--bg-card); border: none; border-radius: 50%; font-size: 28px; cursor: pointer; box-shadow: 0 8px 24px rgba(26, 24, 20, 0.3); display: flex; align-items: center; justify-content: center; transition: all 0.2s ease; z-index: 50; }
   .fab:hover { background: var(--accent); transform: scale(1.05); }
@@ -173,9 +248,13 @@
   .modal-backdrop.show { display: flex; animation: fadeIn 0.2s ease; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
   @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
-  .modal { background: var(--bg-card); border-radius: 22px; padding: 22px; width: 100%; max-width: 440px; max-height: 86vh; overflow-y: auto; animation: slideUp 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+  .modal { background: var(--bg-card); border-radius: 22px; padding: 22px; width: 100%; max-width: 460px; max-height: 86vh; overflow-y: auto; animation: slideUp 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
   .modal-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; margin-bottom: 16px; letter-spacing: -0.01em; }
   .modal-title em { font-style: italic; color: var(--accent); font-weight: 300; }
+  .modal-subtitle {
+    font-size: 12px; color: var(--ink-faded);
+    margin-bottom: 16px; font-style: italic;
+  }
   .form-group { margin-bottom: 14px; }
   .form-label { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-faded); font-weight: 600; margin-bottom: 6px; display: block; }
   .form-input, .form-select { width: 100%; padding: 11px 14px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); font-family: inherit; font-size: 15px; color: var(--ink); transition: border 0.2s; }
@@ -185,8 +264,9 @@
   .type-btn { background: transparent; border: none; padding: 9px; border-radius: 8px; cursor: pointer; font-family: inherit; font-size: 13px; font-weight: 500; color: var(--ink-soft); transition: all 0.2s; }
   .type-btn.active.income { background: var(--green); color: white; }
   .type-btn.active.expense { background: var(--accent); color: white; }
-  .modal-buttons { display: flex; gap: 8px; margin-top: 18px; }
-  .modal-buttons .btn { flex: 1; padding: 11px; font-size: 14px; }
+  .modal-buttons { display: flex; gap: 8px; margin-top: 18px; flex-wrap: wrap; }
+  .modal-buttons .btn { flex: 1; padding: 11px; font-size: 14px; min-width: 100px; }
+  .modal-buttons .btn.full-width { flex-basis: 100%; }
 
   .legend { display: flex; gap: 12px; flex-wrap: wrap; font-size: 10px; color: var(--ink-faded); margin-top: 10px; }
   .legend-item { display: flex; align-items: center; gap: 5px; }
@@ -219,7 +299,7 @@
     .month-title { font-size: 18px; }
     .stat-value { font-size: 19px; }
     .month-progress-num { font-size: 16px; }
-    .action-date { min-width: 40px; font-size: 11px; }
+    .action-date { min-width: 38px; font-size: 11px; }
     .action-name { font-size: 12.5px; }
     .action-amount { font-size: 13px; }
     .pf-grid { grid-template-columns: 80px 1fr 1fr; gap: 8px; }
@@ -240,7 +320,12 @@
 
 <header>
   <div class="eyebrow">Финансовый план · Виктория & Роман</div>
-  <h1>Путь <em>к свободе</em><br>и на <em>Бали</em></h1>
+  <div class="hero-title">
+    Путь<br>
+    <span class="highlight">к свободе</span><br>
+    и на <span class="highlight">Бали<span class="palm">🌴</span></span>
+  </div>
+  <div class="hero-divider"></div>
   <p class="lead">28 апреля → декабрь 2026. Минимум: С1 (Роман) 150к/мес по понедельникам 50/100, С2 (Виктория) 50к/мес.</p>
   <div class="sync-hint">
     <span class="sync-dot"></span>
@@ -325,7 +410,8 @@
 <button class="fab" id="fabBtn" title="Добавить">+</button>
 <div class="toast" id="toast"></div>
 
-<div class="modal-backdrop" id="modal">
+<!-- МОДАЛКА: Добавить факт -->
+<div class="modal-backdrop" id="modalAdd">
   <div class="modal">
     <div class="modal-title">Добавить <em id="modalType">доход</em></div>
     <div class="form-group">
@@ -353,6 +439,27 @@
   </div>
 </div>
 
+<!-- МОДАЛКА: Редактировать плановый шаг -->
+<div class="modal-backdrop" id="modalEdit">
+  <div class="modal">
+    <div class="modal-title">Изменить <em>шаг плана</em></div>
+    <div class="modal-subtitle" id="editSubtitle">Изменения применятся для обоих супругов</div>
+    
+    <div class="form-group"><label class="form-label">Название</label><input type="text" class="form-input" id="editName"></div>
+    <div class="form-group"><label class="form-label">Сумма, ₽ (без знака)</label><input type="number" class="form-input amount" id="editAmount" inputmode="decimal"></div>
+    <div class="form-group"><label class="form-label">Дата (как отображается)</label><input type="text" class="form-input" id="editDate" placeholder="например 15.05"></div>
+    <div class="form-group"><label class="form-label">Иконка</label><input type="text" class="form-input" id="editEmoji" placeholder="🛒" maxlength="4"></div>
+    <div class="form-group"><label class="form-label">Заметка</label><input type="text" class="form-input" id="editNote" placeholder="необязательно"></div>
+    
+    <div class="modal-buttons">
+      <button class="btn" id="editCancel">Отмена</button>
+      <button class="btn primary" id="editSavePlan">💾 Сохранить план</button>
+      <button class="btn green full-width" id="editAsFact">📝 Записать как факт (создать запись)</button>
+      <button class="btn warn full-width" id="editDelete">🗑️ Удалить шаг</button>
+    </div>
+  </div>
+</div>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
 import { getDatabase, ref, onValue, set } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
@@ -371,23 +478,27 @@ window.firebaseDB = {
   setActions: (data) => set(ref(db, 'tracker/actionStates'), data),
   setEntries: (data) => set(ref(db, 'tracker/manualEntries'), data),
   setBali:    (data) => set(ref(db, 'tracker/baliFund'), data),
+  setOverrides: (data) => set(ref(db, 'tracker/planOverrides'), data),
+  setDeleted: (data) => set(ref(db, 'tracker/deletedActions'), data),
   watchActions: (cb) => onValue(ref(db, 'tracker/actionStates'), (snap) => cb(snap.val())),
   watchEntries: (cb) => onValue(ref(db, 'tracker/manualEntries'), (snap) => cb(snap.val())),
-  watchBali:    (cb) => onValue(ref(db, 'tracker/baliFund'),     (snap) => cb(snap.val()))
+  watchBali:    (cb) => onValue(ref(db, 'tracker/baliFund'),     (snap) => cb(snap.val())),
+  watchOverrides: (cb) => onValue(ref(db, 'tracker/planOverrides'), (snap) => cb(snap.val())),
+  watchDeleted: (cb) => onValue(ref(db, 'tracker/deletedActions'), (snap) => cb(snap.val()))
 };
 window.dispatchEvent(new Event('firebase-ready'));
 </script>
 
 <script>
-// ===========================================================
-// ШАБЛОНЫ
-// ===========================================================
+// ============ ШАБЛОНЫ ============
+// С1 = 700/день, С2 = 720/день. День = 1420 ₽.
 const REG = {
   rent:        { emoji: '🏠', name: 'Квартира + интернет', amount: -40870 },
   food:        { emoji: '🛒', name: 'Продукты (~4 недели × 10к)', amount: -43000 },
-  transport:   { emoji: '🍱', name: 'Проезд + еда (рабочие дни)', amount: -28140 },
+  transport:   { emoji: '🍱', name: 'Проезд + еда (рабочие дни)', amount: -29820 },  // 21 день × 1420
   fuel:        { emoji: '⛽', name: 'Бензин (2 заправки)', amount: -2500 },
-  care:        { emoji: '💄', name: 'Уход', amount: -8000 },
+  haircut:     { emoji: '💇', name: 'Стрижка', amount: -1500 },
+  manicure:    { emoji: '💅', name: 'Маникюр', amount: -5000 },
   conn:        { emoji: '📱', name: 'Связь + подписки (2 телефона)', amount: -4086 },
   k1:          { emoji: '💳', name: 'К1 Банк Р — минимум', amount: -5530 },
   k2:          { emoji: '💳', name: 'К2 Банк Я — минимум', amount: -10000 },
@@ -398,41 +509,30 @@ const REG = {
   ded_r:       { emoji: '👴', name: 'Дед Р — минимум', amount: -10000 }
 };
 
-function inc(id, date, amount, name) {
-  return { id, date, emoji: '💰', name, amount, type: 'income' };
-}
-function spend(id, date, tmpl, override = {}) {
-  return { id, date, emoji: tmpl.emoji, name: tmpl.name, amount: tmpl.amount, type: 'spend', ...override };
-}
-function priority(id, date, tmpl, override = {}) {
-  return { id, date, emoji: tmpl.emoji, name: tmpl.name, amount: tmpl.amount, type: 'priority', ...override };
-}
-function buffer(id, date, amount, name = 'В буфер ЧП') {
-  return { id, date, emoji: '🛡️', name, amount, type: 'buffer' };
-}
+function inc(id, date, amount, name) { return { id, date, emoji: '💰', name, amount, type: 'income' }; }
+function spend(id, date, tmpl, override = {}) { return { id, date, emoji: tmpl.emoji, name: tmpl.name, amount: tmpl.amount, type: 'spend', ...override }; }
+function priority(id, date, tmpl, override = {}) { return { id, date, emoji: tmpl.emoji, name: tmpl.name, amount: tmpl.amount, type: 'priority', ...override }; }
+function buffer(id, date, amount, name = 'В буфер ЧП') { return { id, date, emoji: '🛡️', name, amount, type: 'buffer' }; }
 
-// ===========================================================
-// ПЛАН — старт 28 апреля. ЗП Романа: 50/100 по понедельникам
-// ===========================================================
 const PLAN = [
-  // ============ АПРЕЛЬ (хвост) — 28-30 апреля ============
+  // ============ АПРЕЛЬ ============
   {
     id: 'apr',
     title: 'Конец апреля',
     year: '2026',
     accent: 'старт плана',
-    summary: 'Сегодня (27.04) Роман получил 40к. 28 апреля — К1 Банк Р минимум. Продуктов нет — покупаем понемногу до зарплаты 4 мая (5 дней × ~1400 = 7к). Проезд+еда: С1=700, С2=640.',
-    overview: { 'В кармане сейчас': '+40 000', 'К1 Банк Р 28.04': '−5 530', 'Проезд (3 дня × 1340)': '−4 020', 'Продукты 5 дней': '−7 000', 'Приход С2 30.04': '+12 500', 'Перенос на 1 мая': '+35 950' },
-    targets: ['Оплатить К1 Банк Р 28 апреля', 'Купить продуктов на 5 дней (~7к)', 'Дотянуть до зарплаты 4 мая'],
+    summary: '27.04 Роман получил 40к. 28.04 — К1 минимум. Продуктов нет, покупаем понемногу до 4 мая.',
+    overview: { 'В кармане': '+40 000', 'К1 28.04': '−5 530', 'Проезд (3 дня)': '−4 260', 'Продукты 5 дней': '−7 000', 'С2 30.04': '+12 500', 'Перенос на май': '+35 710' },
+    targets: ['Оплатить К1 28 апреля', 'Купить продуктов на 5 дней', 'Дотянуть до 4 мая'],
     actions: [
       inc('apr-1', '27.04', +40000, 'Приход С1 (Роман) — часть от майской ЗП'),
-      { id: 'apr-2', date: '28.04', emoji: '💳', name: 'К1 Банк Р — минимум', amount: -5530, type: 'spend', note: 'Списание по графику кредита' },
-      { id: 'apr-3', date: '28.04', emoji: '🍱', name: 'Проезд+еда (вт)', amount: -1340, type: 'spend' },
-      { id: 'apr-4', date: '28-02', emoji: '🛒', name: 'Продукты (5 дней по чуть-чуть)', amount: -7000, type: 'spend', note: '~1400 ₽/день. Период 28.04 — 02.05 (5 дней до ЗП)' },
-      { id: 'apr-5', date: '29.04', emoji: '🍱', name: 'Проезд+еда (ср)', amount: -1340, type: 'spend' },
-      { id: 'apr-6', date: '30.04', emoji: '🍱', name: 'Проезд+еда (чт)', amount: -1340, type: 'spend' },
+      { id: 'apr-2', date: '28.04', emoji: '💳', name: 'К1 Банк Р — минимум', amount: -5530, type: 'spend' },
+      { id: 'apr-3', date: '28.04', emoji: '🍱', name: 'Проезд+еда (вт)', amount: -1420, type: 'spend' },
+      { id: 'apr-4', date: '28-02', emoji: '🛒', name: 'Продукты (5 дней по чуть-чуть)', amount: -7000, type: 'spend', note: '~1400 ₽/день. Период 28.04 — 02.05' },
+      { id: 'apr-5', date: '29.04', emoji: '🍱', name: 'Проезд+еда (ср)', amount: -1420, type: 'spend' },
+      { id: 'apr-6', date: '30.04', emoji: '🍱', name: 'Проезд+еда (чт)', amount: -1420, type: 'spend' },
       inc('apr-7', '30.04', +12500, 'Приход С2 (Виктория)'),
-      { id: 'apr-8', date: '30.04', emoji: '📦', name: 'Перенос на май (резерв)', amount: -35950, type: 'spend', note: '40к + 12.5к − 5.53к К1 − 4.02к проезд − 7к продукты = 35.95к' }
+      { id: 'apr-8', date: '30.04', emoji: '📦', name: 'Перенос на май (резерв)', amount: -35710, type: 'spend', note: '40к + 12.5к − 5.53к К1 − 4.26к проезд − 7к продукты = 35.71к' }
     ]
   },
 
@@ -442,49 +542,51 @@ const PLAN = [
     title: 'Май',
     year: '2026',
     accent: 'выравнивание + фонд Мама В',
-    summary: 'Проезд+еда: С1=700, С2=640 (день 1340). Квартира за апрель 40к, Мама В хвост 7к + минимум 10к, Мама Р хвост 1.5к + минимум, Бабушка Р 3к. Все минимумы. Фонд для закрытия Мамы В 5 июня = 29к.',
-    overview: { 'Доход + перенос апр.': '+237 950', 'Жизнь+быт': '−123 595', 'Хвосты апреля': '−51 500', 'Минимумы 6 долгов': '−44 182', 'В фонд Мамы В': '−29 000' },
-    targets: ['Закрыть Бабушку Р', 'Закрыть хвост Мама В', 'Закрыть хвост Мама Р', 'Все минимумы вовремя', 'Накопить 29к для закрытия Мамы В'],
+    summary: 'Хвосты апреля + минимумы. Свободные ~27.5к → фонд для закрытия Мамы В 5 июня.',
+    overview: { 'Доход + перенос': '+237 710', 'Жизнь+быт': '−93 855', 'Хвосты апреля': '−72 370', 'Минимумы 5 долгов': '−44 182', 'В фонд Мамы В': '−27 500' },
+    targets: ['Закрыть Бабушку Р', 'Закрыть хвост Мама В', 'Закрыть хвост Мама Р', 'Все минимумы вовремя', 'Накопить 27.5к для закрытия Мамы В'],
     actions: [
-      { id: 'm-1', date: '01.05', emoji: '📦', name: 'Старт мая (из апреля)', amount: +35950, type: 'income', note: 'Резерв с конца апреля' },
-      spend('m-2', '01.05', { emoji: '📱', name: 'Связь начала месяца', amount: -600 }, { note: 'МТС 450 + Облако 150 (Виктория)' }),
+      { id: 'm-1', date: '01.05', emoji: '📦', name: 'Старт мая (из апреля)', amount: +35710, type: 'income', note: 'Резерв с конца апреля' },
+      spend('m-2', '01.05', { emoji: '📱', name: 'Связь начала месяца', amount: -600 }, { note: 'МТС + Облако' }),
       inc('m-4', '04.05', +50000, 'Приход С1 (Роман) — остаток майской ЗП'),
-      spend('m-5', '04.05', { emoji: '🍱', name: 'Проезд+еда (пн)', amount: -1340 }),
-      spend('m-3a', '04.05', { emoji: '🛒', name: 'Продукты неделя 1 (с 4 мая, полная)', amount: -10000 }, { note: 'Закуп на полную неделю после ЗП' }),
-      priority('m-6', '05.05', REG.rent, { name: 'Квартира + интернет (за апрель — просрочка)' }),
-      priority('m-7', '05.05', { emoji: '👵', name: 'Мама В: минимум 10к + хвост 7к', amount: -17000 }),
-      priority('m-8', '05.05', { emoji: '👵', name: 'Бабушка Р: хвост за апрель', amount: -3000 }, { closes: 'Бабушка Р', last: true }),
-      spend('m-9', '05-08', { emoji: '🍱', name: 'Проезд+еда (вт-пт, 4 дня)', amount: -5360 }),
-      inc('m-10', '07.05', +10000, 'Приход С2'),
-      spend('m-11', '09.05', { emoji: '🛒', name: 'Продукты неделя 2', amount: -10000 }),
-      inc('m-12', '10.05', +8500, 'Приход С2'),
-      spend('m-13', '10.05', { emoji: '📱', name: 'Подписка 888₽ (Роман)', amount: -888 }),
-      spend('m-14', '11-15', { emoji: '🍱', name: 'Проезд+еда (5 раб.дней)', amount: -6700 }),
-      spend('m-15', '12.05', { emoji: '📱', name: 'Подписка ИИ (Роман)', amount: -1700 }),
-      spend('m-16', '13.05', REG.k2),
-      spend('m-17', '13.05', REG.k4),
-      spend('m-18', '13.05', { emoji: '⛽', name: 'Бензин 1', amount: -1250 }),
-      inc('m-19', '15.05', +12500, 'Приход С2'),
-      spend('m-20', '15.05', { emoji: '📱', name: 'ТГ 2 акк (Роман)', amount: -299 }),
-      spend('m-21', '16.05', { emoji: '🛒', name: 'Продукты неделя 3', amount: -10000 }),
-      inc('m-22', '18.05', +100000, 'Приход С1 (Роман)'),
-      spend('m-23', '18.05', REG.ded_r),
-      spend('m-24', '18-22', { emoji: '🍱', name: 'Проезд+еда (5 раб.дней)', amount: -6700 }),
-      spend('m-25', '20.05', REG.k3),
-      spend('m-26', '23.05', { emoji: '🛒', name: 'Продукты неделя 4', amount: -10000 }),
-      inc('m-27', '25.05', +8500, 'Приход С2'),
-      spend('m-28', '25-29', { emoji: '🍱', name: 'Проезд+еда (5 раб.дней)', amount: -6700 }),
-      priority('m-29', '26.05', { emoji: '👵', name: 'Мама Р: минимум 10к + хвост 1.5к', amount: -11500 }),
-      spend('m-30', '26.05', { emoji: '🌐', name: 'Интернет за май', amount: -870 }),
-      spend('m-31', '26.05', { emoji: '📱', name: 'ТГ (Виктория)', amount: -299 }),
-      spend('m-32', '27.05', REG.care),
-      spend('m-33', '27.05', { emoji: '⛽', name: 'Бензин 2', amount: -1250 }),
-      spend('m-34', '28.05', REG.k1),
-      inc('m-35', '30.05', +12500, 'Приход С2'),
-      spend('m-36', '30.05', { emoji: '🛒', name: 'Продукты неделя 5', amount: -10000 }),
-      spend('m-37', '30.05', { emoji: '📱', name: 'ТГ 1 акк (Роман)', amount: -299 }),
-      buffer('m-38', '31.05', 0, 'Буфер ЧП в мае не пополняем (всё в фонд Мамы В)'),
-      { id: 'm-39', date: '31.05', emoji: '🐷', name: 'В фонд для закрытия Мамы В', amount: -29000, type: 'spend', note: 'Откладываем 29 000. 5 июня закроем Маму В одной суммой 50к (29к фонд + 21к из ЗП).' }
+      spend('m-5', '04.05', { emoji: '🍱', name: 'Проезд+еда (пн)', amount: -1420 }),
+      spend('m-3a', '04.05', { emoji: '🛒', name: 'Продукты неделя 1 (с 4 мая)', amount: -10000 }, { note: 'Полный закуп' }),
+      priority('m-7', '05.05', REG.rent, { name: 'Квартира + интернет (за апрель)' }),
+      priority('m-8', '05.05', { emoji: '👵', name: 'Мама В: минимум 10к + хвост 7к', amount: -17000 }),
+      priority('m-9', '05.05', { emoji: '👵', name: 'Бабушка Р: хвост за апрель', amount: -3000 }, { closes: 'Бабушка Р', last: true }),
+      spend('m-10', '05-08', { emoji: '🍱', name: 'Проезд+еда (вт-пт, 4 дня)', amount: -5680 }),
+      inc('m-11', '07.05', +10000, 'Приход С2'),
+      spend('m-12', '09.05', { emoji: '🛒', name: 'Продукты неделя 2', amount: -10000 }),
+      inc('m-13', '10.05', +8500, 'Приход С2'),
+      spend('m-14', '10.05', { emoji: '📱', name: 'Подписка 888₽ (Роман)', amount: -888 }),
+      spend('m-15', '11-15', { emoji: '🍱', name: 'Проезд+еда (5 раб.дней)', amount: -7100 }),
+      spend('m-16', '12.05', { emoji: '📱', name: 'Подписка ИИ (Роман)', amount: -1700 }),
+      spend('m-17', '13.05', REG.k2),
+      spend('m-18', '13.05', REG.k4),
+      spend('m-19', '13.05', { emoji: '⛽', name: 'Бензин 1', amount: -1250 }),
+      spend('m-st1', '14.05', REG.haircut, { name: 'Стрижка (1-я в месяце)' }),
+      inc('m-20', '15.05', +12500, 'Приход С2'),
+      spend('m-21', '15.05', { emoji: '📱', name: 'ТГ 2 акк (Роман)', amount: -299 }),
+      spend('m-mn', '15.05', REG.manicure, { name: 'Маникюр' }),
+      spend('m-22', '16.05', { emoji: '🛒', name: 'Продукты неделя 3', amount: -10000 }),
+      inc('m-23', '18.05', +100000, 'Приход С1 (Роман)'),
+      spend('m-24', '18.05', REG.ded_r),
+      spend('m-25', '18-22', { emoji: '🍱', name: 'Проезд+еда (5 раб.дней)', amount: -7100 }),
+      spend('m-26', '20.05', REG.k3),
+      spend('m-27', '23.05', { emoji: '🛒', name: 'Продукты неделя 4', amount: -10000 }),
+      inc('m-28', '25.05', +8500, 'Приход С2'),
+      spend('m-29', '25-29', { emoji: '🍱', name: 'Проезд+еда (5 раб.дней)', amount: -7100 }),
+      priority('m-30', '26.05', { emoji: '👵', name: 'Мама Р: минимум 10к + хвост 1.5к', amount: -11500 }),
+      spend('m-31', '26.05', { emoji: '🌐', name: 'Интернет за май', amount: -870 }),
+      spend('m-32', '26.05', { emoji: '📱', name: 'ТГ (Виктория)', amount: -299 }),
+      spend('m-st2', '28.05', REG.haircut, { name: 'Стрижка (2-я в месяце)' }),
+      spend('m-34', '27.05', { emoji: '⛽', name: 'Бензин 2', amount: -1250 }),
+      spend('m-35', '28.05', REG.k1),
+      inc('m-36', '30.05', +12500, 'Приход С2'),
+      spend('m-37', '30.05', { emoji: '🛒', name: 'Продукты неделя 5', amount: -10000 }),
+      spend('m-38', '30.05', { emoji: '📱', name: 'ТГ 1 акк (Роман)', amount: -299 }),
+      buffer('m-buf', '31.05', 0, 'Буфер ЧП в мае не пополняем (всё в фонд Мамы В)'),
+      { id: 'm-fund', date: '31.05', emoji: '🐷', name: 'В фонд для закрытия Мамы В', amount: -27500, type: 'spend', note: '5 июня закроем Маму В одной суммой 50к (27.5к фонд + 22.5к ЗП)' }
     ]
   },
 
@@ -494,31 +596,33 @@ const PLAN = [
     title: 'Июнь',
     year: '2026',
     accent: 'минус Мама В',
-    summary: 'ЗАКРЫВАЕМ МАМУ В 5 июня одной суммой 50к (29к из фонда мая + 21к из ЗП 1 июня). После — минимумы упадут с 64к до 54к/мес.',
-    overview: { 'Доход': '+202 000', 'Жизнь+быт': '−126 596', 'Закрытие Мамы В': '−50 000', 'Минимумы 6 долгов': '−54 182', 'Из фонда мая': '+29 000' },
-    targets: ['Мама В — ЗАКРЫТЬ полностью 5 июня', 'Все минимумы вовремя', 'Не залезть в буфер ЧП'],
+    summary: 'ЗАКРЫВАЕМ МАМУ В 5 июня одной суммой 50к (27.5к фонд + 22.5к ЗП).',
+    overview: { 'Доход': '+202 000', 'Жизнь+быт': '−128 276', 'Закрытие Мамы В': '−50 000', 'Минимумы 6 долгов': '−54 182', 'Из фонда мая': '+27 500' },
+    targets: ['Мама В — ЗАКРЫТЬ полностью', 'Все минимумы вовремя'],
     actions: [
       inc('j-1', '01.06', +50000, 'Приход С1 (Роман)'),
-      priority('j-2', '05.06', { emoji: '👵', name: 'МАМА В — ФИНАЛЬНОЕ закрытие (50к одной суммой)', amount: -50000 }, { closes: 'Мама В', last: true, note: '29к из фонда мая + 21к из ЗП 1 июня. Получить расписку!' }),
+      priority('j-2', '05.06', { emoji: '👵', name: 'МАМА В — ФИНАЛЬНОЕ закрытие (50к)', amount: -50000 }, { closes: 'Мама В', last: true, note: '27.5к фонд + 22.5к ЗП. Получить расписку!' }),
       spend('j-3', '05.06', REG.rent, { name: 'Квартира + интернет (за май)' }),
       inc('j-4', '07.06', +10000, 'Приход С2'),
       inc('j-5', '10.06', +8500, 'Приход С2'),
       spend('j-6', '13.06', REG.k2),
       spend('j-7', '13.06', REG.k4),
+      spend('j-st1', '14.06', REG.haircut, { name: 'Стрижка (1-я)' }),
       inc('j-8', '15.06', +100000, 'Приход С1 (Роман)'),
       inc('j-9', '15.06', +12500, 'Приход С2'),
+      spend('j-mn', '15.06', REG.manicure, { name: 'Маникюр' }),
       spend('j-10', '18.06', REG.ded_r),
       spend('j-11', '20.06', REG.k3),
       inc('j-12', '25.06', +8500, 'Приход С2'),
       spend('j-13', '26.06', REG.mama_r),
+      spend('j-st2', '28.06', REG.haircut, { name: 'Стрижка (2-я)' }),
       spend('j-14', '28.06', REG.k1),
       inc('j-15', '30.06', +12500, 'Приход С2'),
       spend('j-16', '~30.06', REG.transport),
       spend('j-17', '~30.06', REG.food),
       spend('j-18', '~30.06', REG.fuel),
-      spend('j-19', '~30.06', REG.care),
-      spend('j-20', '~30.06', REG.conn),
-      buffer('j-21', '30.06', 0, 'В июне всё уходит на закрытие Мамы В — буфер не пополняем')
+      spend('j-19', '~30.06', REG.conn),
+      buffer('j-21', '30.06', 0, 'В июне всё уходит на закрытие Мамы В')
     ]
   },
 
@@ -528,30 +632,32 @@ const PLAN = [
     title: 'Июль',
     year: '2026',
     accent: 'минус 2 долга',
-    summary: 'Закрываются Мама Р (3-й платёж) и К2 Банк Я (3-й платёж). После июля минимумы падают на 20к — большое облегчение.',
-    overview: { 'Доход (мин.)': '+202 000', 'Жизнь+быт': '−126 596', 'Минимумы': '−44 182', 'Свободно': '+~31 222' },
-    targets: ['Мама Р — последний платёж', 'К2 Банк Я — последний платёж', 'Все минимумы вовремя'],
+    summary: 'Закрываются Мама Р (3-й платёж) и К2 Банк Я (3-й платёж).',
+    overview: { 'Доход': '+202 000', 'Жизнь+быт': '−128 276', 'Минимумы': '−54 182', 'Свободно': '+~19 542' },
+    targets: ['Мама Р — последний', 'К2 Банк Я — последний'],
     actions: [
       spend('l-1', '~05.07', REG.rent, { name: 'Квартира + интернет (за июнь)' }),
       inc('l-2', '06.07', +50000, 'Приход С1 (Роман)'),
       inc('l-3', '07.07', +10000, 'Приход С2'),
       inc('l-4', '10.07', +8500, 'Приход С2'),
-      priority('l-5', '13.07', REG.k2, { name: 'К2 Банк Я — ПОСЛЕДНИЙ минимум', closes: 'К2 Банк Я', last: true }),
+      priority('l-5', '13.07', REG.k2, { name: 'К2 Банк Я — ПОСЛЕДНИЙ', closes: 'К2 Банк Я', last: true }),
       spend('l-6', '13.07', REG.k4),
+      spend('l-st1', '14.07', REG.haircut, { name: 'Стрижка (1-я)' }),
       inc('l-7', '15.07', +12500, 'Приход С2'),
+      spend('l-mn', '15.07', REG.manicure, { name: 'Маникюр' }),
       spend('l-8', '18.07', REG.ded_r),
       inc('l-9', '20.07', +100000, 'Приход С1 (Роман)'),
       spend('l-10', '20.07', REG.k3),
       inc('l-11', '25.07', +8500, 'Приход С2'),
-      priority('l-12', '26.07', REG.mama_r, { name: 'Мама Р — ПОСЛЕДНИЙ минимум', closes: 'Мама Р', last: true }),
+      priority('l-12', '26.07', REG.mama_r, { name: 'Мама Р — ПОСЛЕДНИЙ', closes: 'Мама Р', last: true }),
+      spend('l-st2', '28.07', REG.haircut, { name: 'Стрижка (2-я)' }),
       spend('l-13', '28.07', REG.k1),
       inc('l-14', '30.07', +12500, 'Приход С2'),
       spend('l-15', '~31.07', REG.transport),
       spend('l-16', '~31.07', REG.food),
       spend('l-17', '~31.07', REG.fuel),
-      spend('l-18', '~31.07', REG.care),
       spend('l-19', '~31.07', REG.conn),
-      buffer('l-20', '31.07', -31000, 'Свободные → в буфер ЧП')
+      buffer('l-20', '31.07', -19500, 'Свободные → в буфер ЧП')
     ]
   },
 
@@ -561,28 +667,30 @@ const PLAN = [
     title: 'Август',
     year: '2026',
     accent: 'минус Дед Р',
-    summary: 'Закрывается Дед Р (4-й платёж). Остаются 4 долга: К1, К3, К4. Минимумы упали до 34к. Свободно ~30к — растёт буфер.',
-    overview: { 'Доход (мин.)': '+202 000', 'Жизнь+быт': '−126 596', 'Минимумы 4 долгов': '−34 182', 'Свободно': '+~41 222' },
-    targets: ['Дед Р — последний платёж', 'Все минимумы вовремя', 'Буфер растёт'],
+    summary: 'Закрывается Дед Р (4-й платёж). Минимумы упали до 34к.',
+    overview: { 'Доход': '+202 000', 'Жизнь+быт': '−128 276', 'Минимумы 4 долгов': '−34 182', 'Свободно': '+~39 542' },
+    targets: ['Дед Р — последний', 'Все минимумы'],
     actions: [
       inc('a-1', '03.08', +50000, 'Приход С1 (Роман)'),
       spend('a-2', '~05.08', REG.rent, { name: 'Квартира + интернет (за июль)' }),
       inc('a-3', '07.08', +10000, 'Приход С2'),
       inc('a-4', '10.08', +8500, 'Приход С2'),
       spend('a-5', '13.08', REG.k4),
+      spend('a-st1', '14.08', REG.haircut, { name: 'Стрижка (1-я)' }),
       inc('a-6', '15.08', +12500, 'Приход С2'),
+      spend('a-mn', '15.08', REG.manicure, { name: 'Маникюр' }),
       inc('a-7', '17.08', +100000, 'Приход С1 (Роман)'),
-      priority('a-8', '18.08', REG.ded_r, { name: 'Дед Р — ПОСЛЕДНИЙ минимум', closes: 'Дед Р', last: true }),
+      priority('a-8', '18.08', REG.ded_r, { name: 'Дед Р — ПОСЛЕДНИЙ', closes: 'Дед Р', last: true }),
       spend('a-9', '20.08', REG.k3),
       inc('a-10', '25.08', +8500, 'Приход С2'),
+      spend('a-st2', '28.08', REG.haircut, { name: 'Стрижка (2-я)' }),
       spend('a-11', '28.08', REG.k1),
       inc('a-12', '30.08', +12500, 'Приход С2'),
       spend('a-13', '~31.08', REG.transport),
       spend('a-14', '~31.08', REG.food),
       spend('a-15', '~31.08', REG.fuel),
-      spend('a-16', '~31.08', REG.care),
       spend('a-17', '~31.08', REG.conn),
-      buffer('a-18', '31.08', -41000, 'Свободные → в буфер ЧП')
+      buffer('a-18', '31.08', -39500, 'Свободные → в буфер ЧП')
     ]
   },
 
@@ -592,27 +700,29 @@ const PLAN = [
     title: 'Сентябрь',
     year: '2026',
     accent: 'стабильность',
-    summary: '4 активных долга: К1, К3, К4 + минимум С2 без долгов родственникам. Минимумы 24к. Свободно 53к — буфер летит вверх.',
-    overview: { 'Доход (мин.)': '+202 000', 'Жизнь+быт': '−126 596', 'Минимумы 3 долгов': '−24 182', 'Свободно': '+~51 222' },
-    targets: ['Все минимумы', 'Буфер 6 мес. расходов'],
+    summary: '3 активных долга: К1, К3, К4. Минимумы 24к. Свободно 50к — растёт буфер.',
+    overview: { 'Доход': '+202 000', 'Жизнь+быт': '−128 276', 'Минимумы 3 долгов': '−24 182', 'Свободно': '+~49 542' },
+    targets: ['Все минимумы', 'Буфер растёт'],
     actions: [
       spend('s-1', '~05.09', REG.rent, { name: 'Квартира + интернет (за август)' }),
       inc('s-2', '07.09', +50000, 'Приход С1 (Роман)'),
       inc('s-3', '07.09', +10000, 'Приход С2'),
       inc('s-4', '10.09', +8500, 'Приход С2'),
       spend('s-5', '13.09', REG.k4),
+      spend('s-st1', '14.09', REG.haircut, { name: 'Стрижка (1-я)' }),
       inc('s-6', '15.09', +12500, 'Приход С2'),
+      spend('s-mn', '15.09', REG.manicure, { name: 'Маникюр' }),
       spend('s-7', '20.09', REG.k3),
       inc('s-8', '21.09', +100000, 'Приход С1 (Роман)'),
       inc('s-9', '25.09', +8500, 'Приход С2'),
+      spend('s-st2', '28.09', REG.haircut, { name: 'Стрижка (2-я)' }),
       spend('s-10', '28.09', REG.k1),
       inc('s-11', '30.09', +12500, 'Приход С2'),
       spend('s-12', '~30.09', REG.transport),
       spend('s-13', '~30.09', REG.food),
       spend('s-14', '~30.09', REG.fuel),
-      spend('s-15', '~30.09', REG.care),
       spend('s-16', '~30.09', REG.conn),
-      buffer('s-17', '30.09', -51000, 'Свободные → в буфер ЧП')
+      buffer('s-17', '30.09', -49500, 'Свободные → в буфер ЧП')
     ]
   },
 
@@ -622,27 +732,29 @@ const PLAN = [
     title: 'Октябрь',
     year: '2026',
     accent: 'стабильность',
-    summary: '3 долга: К1, К3, К4. Тот же ритм — минимумы 24к, свободно ~52к.',
-    overview: { 'Доход (мин.)': '+202 000', 'Жизнь+быт': '−126 596', 'Минимумы 3 долгов': '−24 182', 'Свободно': '+~51 222' },
-    targets: ['Все минимумы', 'Буфер ~250к к концу года'],
+    summary: '3 долга: К1, К3, К4. Минимумы 24к, свободно ~50к.',
+    overview: { 'Доход': '+202 000', 'Жизнь+быт': '−128 276', 'Минимумы 3 долгов': '−24 182', 'Свободно': '+~49 542' },
+    targets: ['Все минимумы'],
     actions: [
       inc('o-1', '05.10', +50000, 'Приход С1 (Роман)'),
       spend('o-2', '~05.10', REG.rent, { name: 'Квартира + интернет (за сентябрь)' }),
       inc('o-3', '07.10', +10000, 'Приход С2'),
       inc('o-4', '10.10', +8500, 'Приход С2'),
       spend('o-5', '13.10', REG.k4),
+      spend('o-st1', '14.10', REG.haircut, { name: 'Стрижка (1-я)' }),
       inc('o-6', '15.10', +12500, 'Приход С2'),
+      spend('o-mn', '15.10', REG.manicure, { name: 'Маникюр' }),
       inc('o-7', '19.10', +100000, 'Приход С1 (Роман)'),
       spend('o-8', '20.10', REG.k3),
       inc('o-9', '25.10', +8500, 'Приход С2'),
+      spend('o-st2', '28.10', REG.haircut, { name: 'Стрижка (2-я)' }),
       spend('o-10', '28.10', REG.k1),
       inc('o-11', '30.10', +12500, 'Приход С2'),
       spend('o-12', '~31.10', REG.transport),
       spend('o-13', '~31.10', REG.food),
       spend('o-14', '~31.10', REG.fuel),
-      spend('o-15', '~31.10', REG.care),
       spend('o-16', '~31.10', REG.conn),
-      buffer('o-17', '31.10', -51000, 'Свободные → в буфер ЧП')
+      buffer('o-17', '31.10', -49500, 'Свободные → в буфер ЧП')
     ]
   },
 
@@ -652,27 +764,29 @@ const PLAN = [
     title: 'Ноябрь',
     year: '2026',
     accent: 'минус К3 Банк Т',
-    summary: 'Закрывается К3 Банк Т (7-й, последний). Остаются только К1 и К4. Минимумы упадут до 13к — свободно ~63к.',
-    overview: { 'Доход (мин.)': '+202 000', 'Жизнь+быт': '−126 596', 'Минимумы 3 долгов': '−24 182', 'Свободно': '+~51 222' },
-    targets: ['К3 Банк Т — последний платёж', 'Все минимумы'],
+    summary: 'Закрывается К3 Банк Т (7-й, последний). Остаются К1 и К4.',
+    overview: { 'Доход': '+202 000', 'Жизнь+быт': '−128 276', 'Минимумы 3 долгов': '−24 182', 'Свободно': '+~49 542' },
+    targets: ['К3 Банк Т — последний', 'Все минимумы'],
     actions: [
       inc('n-1', '02.11', +50000, 'Приход С1 (Роман)'),
       spend('n-2', '~05.11', REG.rent, { name: 'Квартира + интернет (за октябрь)' }),
       inc('n-3', '07.11', +10000, 'Приход С2'),
       inc('n-4', '10.11', +8500, 'Приход С2'),
       spend('n-5', '13.11', REG.k4),
+      spend('n-st1', '14.11', REG.haircut, { name: 'Стрижка (1-я)' }),
       inc('n-6', '15.11', +12500, 'Приход С2'),
+      spend('n-mn', '15.11', REG.manicure, { name: 'Маникюр' }),
       inc('n-7', '16.11', +100000, 'Приход С1 (Роман)'),
-      priority('n-8', '20.11', REG.k3, { name: 'К3 Банк Т — ПОСЛЕДНИЙ минимум', closes: 'К3 Банк Т', last: true }),
+      priority('n-8', '20.11', REG.k3, { name: 'К3 Банк Т — ПОСЛЕДНИЙ', closes: 'К3 Банк Т', last: true }),
       inc('n-9', '25.11', +8500, 'Приход С2'),
+      spend('n-st2', '28.11', REG.haircut, { name: 'Стрижка (2-я)' }),
       spend('n-10', '28.11', REG.k1),
       inc('n-11', '30.11', +12500, 'Приход С2'),
       spend('n-12', '~30.11', REG.transport),
       spend('n-13', '~30.11', REG.food),
       spend('n-14', '~30.11', REG.fuel),
-      spend('n-15', '~30.11', REG.care),
       spend('n-16', '~30.11', REG.conn),
-      buffer('n-17', '30.11', -51000, 'Свободные → в буфер ЧП')
+      buffer('n-17', '30.11', -49500, 'Свободные → в буфер ЧП')
     ]
   },
 
@@ -682,27 +796,29 @@ const PLAN = [
     title: 'Декабрь',
     year: '2026',
     accent: 'итог года',
-    summary: 'Только К1 (5530) и К4 (7632) минимумом. Свободно 60к + ~10к на праздники. На 2027 — добить К1 и К4 досрочно, потом Бали.',
-    overview: { 'Доход (мин.)': '+202 000', 'Жизнь+быт': '−126 596', 'Праздники НГ': '−10 000', 'Минимумы 2 долгов': '−13 162', 'Свободно': '+~52 242' },
-    targets: ['Все минимумы', 'Не залезть в буфер на праздники', 'Подготовить план 2027'],
+    summary: 'Только К1 (5530) и К4 (7632). Свободно 50к + 10к на праздники.',
+    overview: { 'Доход': '+202 000', 'Жизнь+быт': '−128 276', 'Праздники': '−10 000', 'Минимумы 2 долгов': '−13 162', 'Свободно': '+~50 562' },
+    targets: ['Все минимумы', 'Подготовить план 2027'],
     actions: [
       spend('d-1', '~05.12', REG.rent, { name: 'Квартира + интернет (за ноябрь)' }),
       inc('d-2', '07.12', +50000, 'Приход С1 (Роман)'),
       inc('d-3', '07.12', +10000, 'Приход С2'),
       inc('d-4', '10.12', +8500, 'Приход С2'),
       spend('d-5', '13.12', REG.k4),
+      spend('d-st1', '14.12', REG.haircut, { name: 'Стрижка (1-я)' }),
       inc('d-6', '15.12', +12500, 'Приход С2'),
+      spend('d-mn', '15.12', REG.manicure, { name: 'Маникюр' }),
       inc('d-7', '21.12', +100000, 'Приход С1 (Роман)'),
       inc('d-8', '25.12', +8500, 'Приход С2'),
+      spend('d-st2', '28.12', REG.haircut, { name: 'Стрижка (2-я)' }),
       spend('d-9', '28.12', REG.k1),
       inc('d-10', '30.12', +12500, 'Приход С2'),
       spend('d-11', '~31.12', REG.transport),
       spend('d-12', '~31.12', REG.food),
       spend('d-13', '~31.12', REG.fuel),
-      spend('d-14', '~31.12', REG.care),
       spend('d-15', '~31.12', REG.conn),
       { id: 'd-16', date: '~31.12', emoji: '🎄', name: 'Резерв на праздники / подарки', amount: -10000, type: 'spend', note: 'НГ, подарки' },
-      buffer('d-17', '31.12', -52000, 'Свободные → в буфер ЧП')
+      buffer('d-17', '31.12', -50000, 'Свободные → в буфер ЧП')
     ]
   }
 ];
@@ -743,8 +859,6 @@ function isMonthLocked(monthId) {
   const currentYear = today.getFullYear();
   if (currentYear < 2026) return true;
   if (currentYear > 2026) return false;
-  // 2026: блокируем только месяцы, ПОЗЖЕ текущего
-  // апрель = монтайд apr, не блокируется в апреле или позже
   const targetJsMonth = monthId === 'apr' ? 3 : 4 + MONTH_IDS.indexOf(monthId) - 1;
   return targetJsMonth > currentJsMonth;
 }
@@ -752,15 +866,45 @@ function isMonthLocked(monthId) {
 let actionStates = {};
 let manualEntries = [];
 let baliFund = 0;
+let planOverrides = {};   // { actionId: { name?, amount?, date?, emoji?, note? } }
+let deletedActions = {};  // { actionId: true }
 const BALI_TARGET = 600000;
 const RULE = { debt: 0.60, cushion: 0.25, fun: 0.15 };
 const OVERFLOW_THRESHOLD = 5000;
 let firebaseReady = false;
-let initialLoaded = { actions: false, entries: false, bali: false };
+let initialLoaded = { actions: false, entries: false, bali: false, overrides: false, deleted: false };
+
+// Получаем эффективное значение шага (с учётом override)
+function getEffectiveAction(action) {
+  const ov = planOverrides[action.id];
+  if (!ov) return action;
+  return { ...action, ...ov, edited: true };
+}
+
+function getAllPlanActions() {
+  const all = [];
+  for (const m of PLAN) {
+    for (const a of m.actions) {
+      if (deletedActions[a.id]) continue;
+      all.push(getEffectiveAction(a));
+    }
+  }
+  return all;
+}
+
+function getMonthActions(monthId) {
+  const month = PLAN.find(m => m.id === monthId);
+  if (!month) return [];
+  return month.actions
+    .filter(a => !deletedActions[a.id])
+    .map(getEffectiveAction);
+}
 
 async function saveActionsToFirebase() { if (!firebaseReady) return; try { await window.firebaseDB.setActions(actionStates); setSyncStatus(true); } catch (e) { console.warn(e); setSyncStatus(false); } }
 async function saveEntriesToFirebase() { if (!firebaseReady) return; try { const obj = {}; manualEntries.forEach((e, i) => obj[i] = e); await window.firebaseDB.setEntries(obj); setSyncStatus(true); } catch (e) { console.warn(e); setSyncStatus(false); } }
 async function saveBaliToFirebase() { if (!firebaseReady) return; try { await window.firebaseDB.setBali(baliFund); setSyncStatus(true); } catch (e) { console.warn(e); setSyncStatus(false); } }
+async function saveOverridesToFirebase() { if (!firebaseReady) return; try { await window.firebaseDB.setOverrides(planOverrides); setSyncStatus(true); } catch (e) { console.warn(e); setSyncStatus(false); } }
+async function saveDeletedToFirebase() { if (!firebaseReady) return; try { await window.firebaseDB.setDeleted(deletedActions); setSyncStatus(true); } catch (e) { console.warn(e); setSyncStatus(false); } }
 
 function setSyncStatus(ok) {
   const dot = document.querySelector('.sync-dot');
@@ -769,7 +913,7 @@ function setSyncStatus(ok) {
   else { if (dot) { dot.style.background = 'var(--gold)'; dot.style.animation = 'none'; } if (text) text.textContent = 'Локально (синхронизация при восстановлении)'; }
 }
 function hideLoading() {
-  if (initialLoaded.actions && initialLoaded.entries && initialLoaded.bali) {
+  if (Object.values(initialLoaded).every(v => v)) {
     setTimeout(() => { const ls = document.getElementById('loadingScreen'); ls.classList.add('hidden'); setTimeout(() => ls.remove(), 300); }, 200);
   }
 }
@@ -777,16 +921,17 @@ function setupFirebaseWatchers() {
   window.firebaseDB.watchActions((data) => { actionStates = data || {}; initialLoaded.actions = true; setSyncStatus(true); render(); hideLoading(); });
   window.firebaseDB.watchEntries((data) => { if (data) { manualEntries = Object.keys(data).sort((a,b) => parseInt(a)-parseInt(b)).map(k => data[k]); } else { manualEntries = []; } initialLoaded.entries = true; setSyncStatus(true); render(); hideLoading(); });
   window.firebaseDB.watchBali((data) => { baliFund = (typeof data === 'number') ? data : 0; initialLoaded.bali = true; setSyncStatus(true); render(); hideLoading(); });
+  window.firebaseDB.watchOverrides((data) => { planOverrides = data || {}; initialLoaded.overrides = true; setSyncStatus(true); render(); hideLoading(); });
+  window.firebaseDB.watchDeleted((data) => { deletedActions = data || {}; initialLoaded.deleted = true; setSyncStatus(true); render(); hideLoading(); });
 }
 window.addEventListener('firebase-ready', () => {
   firebaseReady = true;
   setupFirebaseWatchers();
-  setTimeout(() => { initialLoaded.actions = true; initialLoaded.entries = true; initialLoaded.bali = true; hideLoading(); }, 5000);
+  setTimeout(() => { for (const k of Object.keys(initialLoaded)) initialLoaded[k] = true; hideLoading(); }, 5000);
 });
 
 function fmt(n) { return Math.abs(n).toLocaleString('ru-RU').replace(/,/g, ' '); }
 function fmtSigned(n) { if (n === 0) return '0 ₽'; return (n > 0 ? '+' : '−') + fmt(n) + ' ₽'; }
-function getAllPlanActions() { return PLAN.flatMap(m => m.actions); }
 function showToast(text, ms = 2500) { const t = document.getElementById('toast'); t.textContent = text; t.classList.add('show'); clearTimeout(t._timer); t._timer = setTimeout(() => t.classList.remove('show'), ms); }
 
 function areAllDebtsClosed() {
@@ -810,13 +955,13 @@ function computeBalance() {
 
 function computePlanVsFact() {
   const monthId = getCurrentMonth();
-  const month = PLAN.find(m => m.id === monthId);
+  const monthActions = getMonthActions(monthId);
   let planIncome = 0, planExpense = 0, factIncome = 0, factExpense = 0;
-  for (const a of month.actions) {
+  for (const a of monthActions) {
     if (a.type === 'buffer' || a.type === 'cushion') continue;
     if (a.amount > 0) planIncome += a.amount; else planExpense += Math.abs(a.amount);
   }
-  for (const a of month.actions) {
+  for (const a of monthActions) {
     if (!actionStates[a.id]) continue;
     if (a.type === 'buffer' || a.type === 'cushion') continue;
     if (a.amount > 0) factIncome += a.amount; else factExpense += Math.abs(a.amount);
@@ -832,9 +977,9 @@ function computeAlerts() {
   const pf = computePlanVsFact();
   const alerts = [];
   if (pf.factExpense > 0 && pf.planExpense > 0) {
-    const month = PLAN.find(m => m.id === pf.monthId);
-    const totalSteps = month.actions.length;
-    const doneSteps = month.actions.filter(a => actionStates[a.id]).length;
+    const monthActions = getMonthActions(pf.monthId);
+    const totalSteps = monthActions.length;
+    const doneSteps = monthActions.filter(a => actionStates[a.id]).length;
     const progress = doneSteps / totalSteps;
     if (progress > 0.1) {
       const expectedExpense = pf.planExpense * progress;
@@ -949,10 +1094,31 @@ function renderAction(a, monthLocked) {
   let badges = '';
   if (a.last) badges += '<span class="badge last">закрыт</span>';
   if (a.bonus) badges += '<span class="badge bonus">бонус</span>';
+  if (a.edited) badges += '<span class="badge edited">изм.</span>';
   const note = a.note ? `<div class="action-note">${a.note}</div>` : '';
   const sign = a.amount > 0 ? '+' : '−';
   const amountClass = a.amount > 0 ? 'in' : 'out';
-  return `<div class="${cls.join(' ')}" data-action-id="${a.id}" ${monthLocked ? 'data-locked="1"' : ''}><div class="checkbox"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"/></svg></div><div class="action-content"><div class="action-row"><span class="action-date">${a.date}</span><span class="action-emoji">${a.emoji}</span><span class="action-name">${a.name}${badges}</span><span class="action-amount ${amountClass}">${sign}${fmt(a.amount)} ₽</span></div>${note}</div></div>`;
+  
+  // Карандашик не показываем для заблокированных, но показываем даже для отмеченных
+  const editBtn = monthLocked ? '' : `<button class="edit-btn" data-edit-id="${a.id}" title="Изменить">✏️</button>`;
+  
+  return `
+    <div class="${cls.join(' ')}" data-action-id="${a.id}" ${monthLocked ? 'data-locked="1"' : ''}>
+      <div class="checkbox-area" data-toggle-id="${a.id}">
+        <div class="checkbox"><svg viewBox="0 0 24 24"><polyline points="4,12 10,18 20,6"/></svg></div>
+      </div>
+      <div class="action-content" data-toggle-id="${a.id}">
+        <div class="action-row">
+          <span class="action-date">${a.date}</span>
+          <span class="action-emoji">${a.emoji}</span>
+          <span class="action-name">${a.name}${badges}</span>
+          <span class="action-amount ${amountClass}">${sign}${fmt(a.amount)} ₽</span>
+          ${editBtn}
+        </div>
+        ${note}
+      </div>
+    </div>
+  `;
 }
 
 function renderManualEntry(e) {
@@ -961,14 +1127,33 @@ function renderManualEntry(e) {
   const dateShort = e.date ? e.date.slice(8, 10) + '.' + e.date.slice(5, 7) : '';
   const emoji = e.amount > 0 ? '💰' : '💸';
   const noteText = [e.who, e.category, e.note].filter(Boolean).join(' · ');
-  return `<div class="action manual" data-manual-id="${e.id}"><div class="checkbox" style="background: var(--gold); border-color: var(--gold);"><svg viewBox="0 0 24 24" style="opacity:1"><polyline points="4,12 10,18 20,6"/></svg></div><div class="action-content"><div class="action-row"><span class="action-date">${dateShort}</span><span class="action-emoji">${emoji}</span><span class="action-name">${e.category || 'Факт'}<span class="badge manual">факт</span></span><span class="action-amount ${amountClass}">${sign}${fmt(e.amount)} ₽</span><button class="delete-btn" data-delete-id="${e.id}">×</button></div>${noteText ? `<div class="action-note">${noteText}</div>` : ''}</div></div>`;
+  return `
+    <div class="action manual" data-manual-id="${e.id}">
+      <div class="checkbox-area">
+        <div class="checkbox" style="background: var(--gold); border-color: var(--gold);">
+          <svg viewBox="0 0 24 24" style="opacity:1"><polyline points="4,12 10,18 20,6"/></svg>
+        </div>
+      </div>
+      <div class="action-content">
+        <div class="action-row">
+          <span class="action-date">${dateShort}</span>
+          <span class="action-emoji">${emoji}</span>
+          <span class="action-name">${e.category || 'Факт'}<span class="badge manual">факт</span></span>
+          <span class="action-amount ${amountClass}">${sign}${fmt(e.amount)} ₽</span>
+          <button class="delete-btn" data-delete-id="${e.id}">×</button>
+        </div>
+        ${noteText ? `<div class="action-note">${noteText}</div>` : ''}
+      </div>
+    </div>
+  `;
 }
 
 function renderMonth(month) {
-  const completed = month.actions.every(a => actionStates[a.id]);
+  const monthActions = getMonthActions(month.id);
+  const completed = monthActions.length > 0 && monthActions.every(a => actionStates[a.id]);
   const locked = isMonthLocked(month.id) && !completed;
-  const done = month.actions.filter(a => actionStates[a.id]).length;
-  const total = month.actions.length;
+  const done = monthActions.filter(a => actionStates[a.id]).length;
+  const total = monthActions.length;
   const monthFacts = manualEntries.filter(e => e.monthId === month.id);
   const closed = new Set();
   getAllPlanActions().forEach(a => { if (a.last && a.closes && actionStates[a.id]) closed.add(a.closes); });
@@ -990,7 +1175,12 @@ function renderMonth(month) {
   const accent = completed ? 'завершено' : month.accent;
   let manualHtml = '';
   if (monthFacts.length > 0) manualHtml = `<div class="section-title">Факты — ручной ввод (${monthFacts.length})</div>${monthFacts.map(renderManualEntry).join('')}`;
-  return `<div class="${cls.join(' ')}" data-month-id="${month.id}"><div class="month-header" data-toggle="${month.id}"><div class="month-title-block"><div class="month-num">${month.year}</div><div class="month-title">${month.title} <em>· ${accent}</em>${bonusBadge}${lockBadge}</div><div class="month-summary">${month.summary}</div></div><div class="month-progress"><div class="month-progress-num">${done}/${total}</div><div class="month-progress-label">шагов <span class="chevron">›</span></div></div></div><div class="month-body">${overviewHtml}${targetsHtml}<div class="section-title">План по дням</div>${month.actions.map(a => renderAction(a, locked)).join('')}${manualHtml}</div></div>`;
+  
+  const planTitle = locked
+    ? `<div class="section-title">План по дням</div>`
+    : `<div class="section-title">План по дням <span class="section-action" data-add-step="${month.id}">+ Добавить шаг</span></div>`;
+  
+  return `<div class="${cls.join(' ')}" data-month-id="${month.id}"><div class="month-header" data-toggle="${month.id}"><div class="month-title-block"><div class="month-num">${month.year}</div><div class="month-title">${month.title} <em>· ${accent}</em>${bonusBadge}${lockBadge}</div><div class="month-summary">${month.summary}</div></div><div class="month-progress"><div class="month-progress-num">${done}/${total}</div><div class="month-progress-label">шагов <span class="chevron">›</span></div></div></div><div class="month-body">${overviewHtml}${targetsHtml}${planTitle}${monthActions.map(a => renderAction(a, locked)).join('')}${manualHtml}</div></div>`;
 }
 
 function render() {
@@ -1017,19 +1207,20 @@ function render() {
   renderOverflow();
 }
 
+// ===== МОДАЛКА: Добавить факт =====
 let currentFormType = 'income';
-function openModal() {
+function openAddModal() {
   currentFormType = 'income';
   document.getElementById('modalType').textContent = 'доход';
-  document.querySelectorAll('.type-btn').forEach(b => b.classList.toggle('active', b.dataset.type === 'income'));
+  document.querySelectorAll('#modalAdd .type-btn').forEach(b => b.classList.toggle('active', b.dataset.type === 'income'));
   document.getElementById('formDate').value = new Date().toISOString().slice(0, 10);
   document.getElementById('formAmount').value = '';
   document.getElementById('formNote').value = '';
   updateCategoryOptions();
-  document.getElementById('modal').classList.add('show');
+  document.getElementById('modalAdd').classList.add('show');
   setTimeout(() => document.getElementById('formAmount').focus(), 100);
 }
-function closeModal() { document.getElementById('modal').classList.remove('show'); }
+function closeAddModal() { document.getElementById('modalAdd').classList.remove('show'); }
 function updateCategoryOptions() {
   const select = document.getElementById('formCategory');
   const cats = CATEGORIES[currentFormType];
@@ -1049,7 +1240,7 @@ async function saveManualEntry() {
   const monthId = jsMonthToPlanId(d.getMonth()) || getCurrentMonth();
   manualEntries.push({ id: 'm_' + Date.now(), date, amount: currentFormType === 'income' ? amount : -amount, type: currentFormType === 'income' ? 'income' : 'spend', who, category: categoryLabel, note, monthId });
   await saveEntriesToFirebase();
-  closeModal();
+  closeAddModal();
   render();
 }
 
@@ -1060,46 +1251,227 @@ async function deleteManualEntry(id) {
   render();
 }
 
+// ===== МОДАЛКА: Редактировать шаг =====
+let editingActionId = null;
+
+function openEditModal(actionId) {
+  editingActionId = actionId;
+  // Найти оригинальный action
+  let original = null;
+  let monthOfAction = null;
+  for (const m of PLAN) {
+    const a = m.actions.find(x => x.id === actionId);
+    if (a) { original = a; monthOfAction = m.id; break; }
+  }
+  if (!original) return;
+  const eff = getEffectiveAction(original);
+  
+  document.getElementById('editName').value = eff.name;
+  document.getElementById('editAmount').value = Math.abs(eff.amount);
+  document.getElementById('editDate').value = eff.date;
+  document.getElementById('editEmoji').value = eff.emoji;
+  document.getElementById('editNote').value = eff.note || '';
+  document.getElementById('editSubtitle').textContent = `Месяц: ${monthOfAction.toUpperCase()} · Изменения видит и Виктория, и Роман`;
+  
+  document.getElementById('modalEdit').classList.add('show');
+}
+
+function closeEditModal() {
+  editingActionId = null;
+  document.getElementById('modalEdit').classList.remove('show');
+}
+
+async function saveEditPlan() {
+  if (!editingActionId) return;
+  let original = null;
+  for (const m of PLAN) {
+    const a = m.actions.find(x => x.id === editingActionId);
+    if (a) { original = a; break; }
+  }
+  if (!original) return;
+  
+  const newName = document.getElementById('editName').value.trim();
+  const newAmountAbs = parseFloat(document.getElementById('editAmount').value);
+  const newDate = document.getElementById('editDate').value.trim();
+  const newEmoji = document.getElementById('editEmoji').value.trim();
+  const newNote = document.getElementById('editNote').value.trim();
+  
+  if (isNaN(newAmountAbs) || newAmountAbs < 0) { alert('Сумма должна быть числом ≥ 0'); return; }
+  
+  const sign = original.amount < 0 ? -1 : 1;
+  const newAmount = sign * newAmountAbs;
+  
+  // Создаём override только из изменённых полей
+  const ov = {};
+  if (newName !== original.name) ov.name = newName;
+  if (newAmount !== original.amount) ov.amount = newAmount;
+  if (newDate !== original.date) ov.date = newDate;
+  if (newEmoji !== original.emoji) ov.emoji = newEmoji;
+  if (newNote !== (original.note || '')) ov.note = newNote;
+  
+  if (Object.keys(ov).length === 0) {
+    delete planOverrides[editingActionId];
+  } else {
+    planOverrides[editingActionId] = ov;
+  }
+  
+  await saveOverridesToFirebase();
+  closeEditModal();
+  showToast('План обновлён');
+  render();
+}
+
+async function saveEditAsFact() {
+  if (!editingActionId) return;
+  let original = null;
+  let monthOfAction = null;
+  for (const m of PLAN) {
+    const a = m.actions.find(x => x.id === editingActionId);
+    if (a) { original = a; monthOfAction = m.id; break; }
+  }
+  if (!original) return;
+  
+  const newName = document.getElementById('editName').value.trim();
+  const newAmountAbs = parseFloat(document.getElementById('editAmount').value);
+  const newDate = document.getElementById('editDate').value.trim();
+  const newNote = document.getElementById('editNote').value.trim();
+  
+  if (isNaN(newAmountAbs) || newAmountAbs <= 0) { alert('Сумма должна быть > 0'); return; }
+  
+  const sign = original.amount < 0 ? -1 : 1;
+  const newAmount = sign * newAmountAbs;
+  
+  // Снимаем галочку с планового шага если стояла
+  if (actionStates[editingActionId]) {
+    delete actionStates[editingActionId];
+    await saveActionsToFirebase();
+  }
+  
+  // Преобразуем дату дд.мм в полную
+  let isoDate = new Date().toISOString().slice(0, 10);
+  const m = newDate.match(/^(\d{1,2})\.(\d{1,2})$/);
+  if (m) {
+    const dd = String(m[1]).padStart(2, '0');
+    const mm = String(m[2]).padStart(2, '0');
+    isoDate = `2026-${mm}-${dd}`;
+  }
+  
+  manualEntries.push({
+    id: 'm_' + Date.now(),
+    date: isoDate,
+    amount: newAmount,
+    type: newAmount > 0 ? 'income' : 'spend',
+    who: 'Общее',
+    category: newName,
+    note: newNote || `Из плана: ${original.name}`,
+    monthId: monthOfAction
+  });
+  
+  await saveEntriesToFirebase();
+  closeEditModal();
+  showToast('Записано как факт');
+  render();
+}
+
+async function deleteStep() {
+  if (!editingActionId) return;
+  if (!confirm('Удалить этот шаг из плана? Действие можно отменить через "Сбросить".')) return;
+  
+  deletedActions[editingActionId] = true;
+  await saveDeletedToFirebase();
+  
+  // Если был отмечен — снимаем
+  if (actionStates[editingActionId]) {
+    delete actionStates[editingActionId];
+    await saveActionsToFirebase();
+  }
+  
+  closeEditModal();
+  showToast('Шаг удалён');
+  render();
+}
+
 async function resetState() {
-  if (!confirm('Сбросить ВСЕ отметки, факты и фонд Бали? Действие синхронизируется.')) return;
-  actionStates = {}; manualEntries = []; baliFund = 0;
-  await saveActionsToFirebase(); await saveEntriesToFirebase(); await saveBaliToFirebase();
+  if (!confirm('Сбросить ВСЕ отметки, факты, изменения плана и фонд Бали? Действие синхронизируется.')) return;
+  actionStates = {}; manualEntries = []; baliFund = 0; planOverrides = {}; deletedActions = {};
+  await saveActionsToFirebase();
+  await saveEntriesToFirebase();
+  await saveBaliToFirebase();
+  await saveOverridesToFirebase();
+  await saveDeletedToFirebase();
   render();
 }
 
 function attachEvents() {
   document.addEventListener('click', async (e) => {
+    // Удаление ручной записи
     const delBtn = e.target.closest('[data-delete-id]');
-    if (delBtn) { e.stopPropagation(); await deleteManualEntry(delBtn.dataset.deleteId); return; }
-    const action = e.target.closest('.action[data-action-id]');
-    if (action) {
+    if (delBtn) {
+      e.stopPropagation();
+      await deleteManualEntry(delBtn.dataset.deleteId);
+      return;
+    }
+    
+    // Карандашик
+    const editBtn = e.target.closest('[data-edit-id]');
+    if (editBtn) {
+      e.stopPropagation();
+      openEditModal(editBtn.dataset.editId);
+      return;
+    }
+    
+    // Добавить шаг (пока заглушка — направляем на FAB)
+    const addStepBtn = e.target.closest('[data-add-step]');
+    if (addStepBtn) {
+      e.stopPropagation();
+      openAddModal();
+      return;
+    }
+    
+    // Клик по чекбоксу или контенту шага
+    const toggleEl = e.target.closest('[data-toggle-id]');
+    if (toggleEl) {
+      const action = toggleEl.closest('.action');
+      if (!action) return;
       if (action.dataset.locked === '1') { showToast('Этот месяц ещё не наступил'); return; }
-      const id = action.dataset.actionId;
+      const id = toggleEl.dataset.toggleId;
       actionStates[id] = !actionStates[id];
       if (!actionStates[id]) delete actionStates[id];
       await saveActionsToFirebase();
       render();
       return;
     }
+    
+    // Заголовок месяца
     const header = e.target.closest('.month-header');
     if (header) { header.closest('.month-card').classList.toggle('open'); return; }
   });
+  
   document.getElementById('expandAllBtn').addEventListener('click', () => document.querySelectorAll('.month-card').forEach(c => c.classList.add('open')));
   document.getElementById('collapseAllBtn').addEventListener('click', () => document.querySelectorAll('.month-card').forEach(c => c.classList.remove('open')));
   document.getElementById('resetBtn').addEventListener('click', resetState);
-  document.getElementById('fabBtn').addEventListener('click', openModal);
-  document.getElementById('modal').addEventListener('click', (e) => { if (e.target.id === 'modal') closeModal(); });
-  document.getElementById('modalCancel').addEventListener('click', closeModal);
+  document.getElementById('fabBtn').addEventListener('click', openAddModal);
+  
+  // Add modal
+  document.getElementById('modalAdd').addEventListener('click', (e) => { if (e.target.id === 'modalAdd') closeAddModal(); });
+  document.getElementById('modalCancel').addEventListener('click', closeAddModal);
   document.getElementById('modalSave').addEventListener('click', saveManualEntry);
   document.getElementById('typeToggle').addEventListener('click', (e) => {
     const btn = e.target.closest('.type-btn');
     if (!btn) return;
     currentFormType = btn.dataset.type;
     document.getElementById('modalType').textContent = currentFormType === 'income' ? 'доход' : 'расход';
-    document.querySelectorAll('.type-btn').forEach(b => b.classList.toggle('active', b.dataset.type === currentFormType));
+    document.querySelectorAll('#modalAdd .type-btn').forEach(b => b.classList.toggle('active', b.dataset.type === currentFormType));
     updateCategoryOptions();
   });
   document.getElementById('formAmount').addEventListener('keydown', (e) => { if (e.key === 'Enter') saveManualEntry(); });
+  
+  // Edit modal
+  document.getElementById('modalEdit').addEventListener('click', (e) => { if (e.target.id === 'modalEdit') closeEditModal(); });
+  document.getElementById('editCancel').addEventListener('click', closeEditModal);
+  document.getElementById('editSavePlan').addEventListener('click', saveEditPlan);
+  document.getElementById('editAsFact').addEventListener('click', saveEditAsFact);
+  document.getElementById('editDelete').addEventListener('click', deleteStep);
 }
 
 render();
